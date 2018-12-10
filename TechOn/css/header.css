@@ -1,0 +1,31 @@
+.form-control[type="search"]{
+    width: 700px;
+}
+.float-left{
+    width: 64px;
+    height: 64px;
+}
+
+.navbar-brand {
+    font-size: 35px;
+}
+
+header{
+    position: relative;
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.5);
+}
+
+.location-sign-in a{
+    text-decoration: none;
+}
+
+.dashed-location, .dashed-sign-in {
+    border-bottom: 1px dashed gray;
+    text-decoration: none;
+    color: black;
+}
+.dashed-location:hover, .dashed-sign-in:hover {
+    border-color: black;
+
+}
+
