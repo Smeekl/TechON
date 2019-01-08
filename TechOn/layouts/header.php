@@ -8,7 +8,7 @@
 <header id="header-dm">
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo justify-content-start">
-            <a href="index.php" class="navbar-brand mr-sm-1">TechON
+            <a href="" class="navbar-brand mr-sm-1">TechON
             <img src="img/lamp.png" class="rounded float-left" alt="..."></a>
         </div>
         <form class="form-inline justify-content-between">
@@ -16,7 +16,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             <div class="location-sign-in">
                 <a href="#" class="ml-2 mr-2"><img src="https://img.icons8.com/windows/32/000000/marker.png"><span class="dashed-location">Your location</span></a>
-                <a href="authentication.php" class="mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Sign In</span></a>
+                <a href="?url=authentication" class="mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Sign In</span></a>
             </div>
         </form>
     </nav>
