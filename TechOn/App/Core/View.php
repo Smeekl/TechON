@@ -12,7 +12,7 @@ class View
 {
     //public $template_view; // здесь можно указать общий вид по умолчанию.
 
-    function generate($view,$content_view, $data = null)
+    public function generate($view,$content_view, $data = null)
     {
         include "app/views/$view/$content_view";
     }

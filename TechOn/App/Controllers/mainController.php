@@ -9,22 +9,14 @@
 namespace Controllers;
 
 
-use Core\Controller;
-use Core\View;
-
-Class mainController extends  Controller
+Class mainController extends  \Core\Controller
 {
 
 
-    function  __construct()
-    {
-        $this->view = new View();
-    }
-
     function action_index()
     {
-        $this->view->generate('index', 'index.php');
+        $view = new \Core\View();
+        $view->generate('index', 'index.php');
     }
-
 
 }

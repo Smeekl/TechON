@@ -8,17 +8,11 @@
 
 namespace Core;
 
+
 class Controller {
 
-    public $model;
-    public $view;
-
-    function __construct()
+    public function generate($view,$content_view, $data = null)
     {
-        $this->view = new View();
-    }
-
-    function action_index()
-    {
+        include "app/views/$view/$content_view";
     }
 }

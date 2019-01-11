@@ -19,10 +19,10 @@ include_once 'layouts/header.php';?>
                 <nav class="navbar navbar-light bg-light justify-conten-between">
                     <ul class="navbar-nav">
                         <li class="navbar-item">
-                            <a href="products/cheap" class="sort">Sort By Lowest Price</a>
+                            <a href="show/cheap" class="sort">Sort By Lowest Price</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="products/expensive" class="sort">Sort By Highest Price</a>
+                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
                         </li>
                     </ul>
             </div>
@@ -34,7 +34,7 @@ include_once 'layouts/header.php';?>
                 foreach($data as $key => $value) {?>
                     <div class="col-sm-4 mb-4 mt-4">
                         <div class="row">
-                            <a href="../<?php echo $data[$key]['short_name']?>">
+                            <a href="http://techon/product/<?php echo $data[$key]['id']."/".$data[$key]['short_name']?>">
                                 <img src="<?php echo $data[$key]['ava']?>">
                                 <div class="w-100"></div>
                                 <div class="col-4 col-sm-10"><?php echo $data[$key]['name']; ?></div>

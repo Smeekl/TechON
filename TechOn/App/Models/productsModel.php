@@ -8,11 +8,12 @@
 namespace Models;
 
 
-Class productListModel extends \Core\Model
+Class productsModel extends \Core\Model
 {
     private $products = array(
         array(
             'id'=>'1',
+            'short_name'=>'Farberware_3.2-Quart_Oil',
             'name'=>'Farberware 3.2-Quart Oil-Less Multi-Functional Fryer',
             'price'=>'$55',
             'reviews'=>'115',
@@ -27,6 +28,7 @@ Class productListModel extends \Core\Model
 
         array(
             'id'=>'2',
+            'short_name'=>'SAMSUNG_Galaxy_Tab_E_9.6_16GB',
             'name'=>'SAMSUNG Galaxy Tab E 9.6" 16GB',
             'price'=>'$99',
             'reviews'=>'107',
@@ -41,6 +43,7 @@ Class productListModel extends \Core\Model
 
         array(
             'id'=>'3',
+            'short_name'=>'Fluxx_Watt_UL2272LED',
             'name'=>'Fluxx Watt UL2272 LED Hoverboard',
             'price'=>'$97',
             'reviews'=>'2',
@@ -54,6 +57,7 @@ Class productListModel extends \Core\Model
 
         array(
             'id'=>'4',
+            'short_name'=>'Microsoft_Xbox_One_X_1TB',
             'name'=>'Microsoft Xbox One X 1TB Console',
             'price'=>'$399',
             'reviews'=>'57',
@@ -68,6 +72,7 @@ Class productListModel extends \Core\Model
 
         array(
             'id'=>'5',
+            'short_name'=>'Sceptre_32_LED_TV',
             'name'=>'Sceptre 32" Class HD (720P) LED TV',
             'price'=>'$79',
             'reviews'=>'2807',
@@ -81,6 +86,7 @@ Class productListModel extends \Core\Model
 
         array(
             'id'=>'6',
+            'short_name'=>'Gold\'s_Gym_Trainer_720_Treadmill',
             'name'=>'Gold\'s Gym Trainer 720 Treadmill with Power Incline',
             'price'=>'$449',
             'reviews'=>'227',

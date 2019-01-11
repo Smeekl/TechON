@@ -460,7 +460,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body background="https://images5.alphacoders.com/312/thumb-1920-312372.jpg">
 <div class="header">
-    <h1>Billion error page</h1>
+    <h1>TechOn error page</h1>
 </div>
 <div class="w3-main">
     <div class="agile-info">
@@ -473,7 +473,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 </div>
 <div class="footer-w3l">
-    <p>&copy; 2018 Billion Error Page. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+    <p>&copy; TechOn error page. All rights reserved | Design by W3Layouts</p>
 </div>
 <!--/animation scripts -->
 <script type="text/javascript" src="/public/errors/web/js/jquery-2.1.4.min.js"></script>

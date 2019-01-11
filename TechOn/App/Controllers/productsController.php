@@ -10,33 +10,28 @@ namespace Controllers;
 
 
 use Core\Controller;
-use Core\View;
-use Models\productListModel;
+use Models\productsModel;
 
 Class productsController extends  Controller
 {
 
-
-    function  __construct()
+    function action_products()
     {
-        $this->model = new productListModel();
-        $this->view = new View();
-    }
-
-    function action_index()
-    {
-     $data = $this->model->getSortArrayByLowest();
-     $this->view->generate('productList','productList.php', $data);
+     $model = new productsModel();
+     $data = $model->getSortArrayByLowest();
+     self::generate('productList','productList.php', $data);
     }
 
     function action_expensive(){
-        $data = $this->model->getSortArrayByHighest();
-        $this->view->generate('productList','productList.php', $data);
+        $model = new productsModel();
+        $data = $model->getSortArrayByHighest();
+        self::generate('productList','productList.php', $data);
     }
 
     function action_cheap(){
-        $data = $this->model->getSortArrayByLowest();
-        $this->view->generate('productList','productList.php', $data);
+        $model = new productsModel();
+        $data = $model->getSortArrayByLowest();
+        self::generate('productList','productList.php', $data);
     }
 
 }

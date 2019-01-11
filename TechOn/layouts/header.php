@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="/css/header.css">
     <meta charset="UTF-8">
 </head>
 <body>
 <header id="header-dm">
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo justify-content-start">
-            <a href="" class="navbar-brand mr-sm-1">TechON
-            <img src="img/lamp.png" class="rounded float-left" alt="..."></a>
+            <a href="http://techon" class="navbar-brand mr-sm-1">TechON
+            <img src="/img/lamp.png" class="rounded float-left" alt="..."></a>
         </div>
         <form class="form-inline justify-content-between">
             <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">

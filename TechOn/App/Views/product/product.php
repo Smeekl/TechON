@@ -9,32 +9,27 @@
     <link rel="stylesheet" href="../../../css/product.css">
 </head>
 <body>
-<?php include_once('layouts/header.php');
-
-include_once ('products.php');
-$id = $_GET['id'];
-$product = $obj->getElementByID($id)?>
-
+<?php include_once('layouts/header.php');?>
 <main>
-    <h5 class="pt-4 pl-4 category"><a href="../productList/productList.php">Category/</a><a href="../productList/productList.php">Category/</a><?php echo $product['name']?></h5>
+    <h5 class="pt-4 pl-4 category"><a href="http://techon/show">Category/</a><a href="http://techon/show">Category/</a><?php echo $product['name']?></h5>
     <div class="container pt-4">
         <div class="row">
             <div class="col-sm category">
-                <img src="<?php echo $product['full_img'];?>">
+                <img src="<?php echo $data['full_img'];?>">
             </div>
             <div class="col-sm">
                 <div class="row d-inline-block product">
                     <div class="col-sm pb-2 label">
-                        <h2><?php echo $product['name'];?><h2></h2>
+                        <h2><?php echo $data['name'];?><h2></h2>
                     </div>
                     <div class="col-sm pb-4 info">
                         <div class="row">
-                            <div class="col-sm"><?php echo $product['mark']?></div>
-                            <div class="col-sm reviews">Reviews:<?php echo $product['reviews'];?></div>
-                            <div class="col-sm">TechOn #<?php echo $product['id'];?></div>
+                            <div class="col-sm"><?php echo $data['mark']?></div>
+                            <div class="col-sm reviews">Reviews:<?php echo $data['reviews'];?></div>
+                            <div class="col-sm">TechOn #<?php echo $data['id'];?></div>
                         </div>
                     </div>
-                    <div class="col-sm price pb-4"><?php echo $product['price'];?></div>
+                    <div class="col-sm price pb-4"><?php echo $data['price'];?></div>
                     <div class="col-sm shipping pb-4">
                         <span class="free-shiping">
                             Free shipping
@@ -417,11 +412,11 @@ $product = $obj->getElementByID($id)?>
                         <a href="#">See our disclaimer</a>
                         <br>
                         <br>
-                        <?php echo $product['description']?>
+                        <?php echo $data['description']?>
                     </div>
                     <div class="col-sm mb-4">
                         <p><strong>We aim to show you accurate product information</strong></p>
-                        <ul><?php foreach ($product['about'] as $value) {?>
+                        <ul><?php foreach ($data['about'] as $value) {?>
                             <li><?php echo $value;?></li>
                             <?php }?>
                         </ul>
@@ -440,5 +435,6 @@ $product = $obj->getElementByID($id)?>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<?php include_once('layouts/footer.php');?>
 </body>
 </html>
