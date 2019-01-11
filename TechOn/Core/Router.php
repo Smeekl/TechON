@@ -28,30 +28,18 @@ Class Router{
 
         foreach ($this->routes as $uriPattern => $path){
             if (preg_match("~$uriPattern~", $uri)){
-                $segments = explode('/', $path);
+
+                $internalRoute = preg_replace("~$uriPattern~",$path, $uri);
+                $segments = explode('/', $internalRoute);
                 $controllerName = '\Controllers\\'.array_shift($segments).'Controller';
-
-                $cwd = getcwd();
                 $actionName = 'action_'.array_shift($segments);
+                $params = $segments;
 
-                $controllerPath = 'App/Controllers/' .
-                    $controllerName . '.php';
+                $result = call_user_func(array($controllerName, $actionName), $params);
 
-                if (file_exists($controllerPath)) {
-                    include $controllerPath;
+                if ($result != null){
+                    break;
                 }
-
-                $controllerObject = new $controllerName();
-
-
-                if (method_exists($controllerObject, $actionName)) {
-                    $controllerObject->$actionName();
-                } else {
-                    Route::ErrorPage404();
-                }
-                break;
-            } else {
-                Route::ErrorPage404();
             }
         }
     }
@@ -59,5 +47,9 @@ Class Router{
     static function ErrorPage404()
     {
         require_once 'App/Views/errors/404/404.php';
+    }
+
+    static function ExceptionError(){
+        require_once 'app/Views/errors/Oops/oops.php';
     }
 }
