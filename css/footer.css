@@ -1,0 +1,27 @@
+footer{
+    flex: 0 0 auto;
+}
+.global-footer-copyright{
+    padding: 30px;
+    font-size: 11px;
+}
+.terms{
+    margin-left: 370px;
+}
+.terms-list-full{
+    margin-top: 30px;
+}
+.terms-list{
+    display: block;
+}
+
+.terms-list a{
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+}
+
+.terms-name{
+    font-size: 13px;
+    font-weight: bold;
+}
