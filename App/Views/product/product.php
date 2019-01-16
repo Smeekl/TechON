@@ -19,7 +19,7 @@
                     <div class="bzoom_wrap">
                         <ul id="bzoom">
                             <?php
-                            foreach($data as $key => $value) {?>
+                            foreach($data[1] as $key => $value) { ;?>
                             <li>
                                 <img class="bzoom_thumb_image" src="<?=$data[1][$key]['image']?>">
                                 <img class="bzoom_big_image" src="<?=$data[1][$key]['image']?>">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-sm price pb-4"><?=$data[0]['price']/100;?>$</div>
-                    <div class="col-sm shipping pb-4">
+                    <div class="col-sm shipping pb-4">x
                         <span class="free-shiping">
                             Free shipping
                         </span>

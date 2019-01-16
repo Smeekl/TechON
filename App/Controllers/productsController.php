@@ -14,23 +14,26 @@ use Models\productsModel;
 
 Class productsController extends  Controller
 {
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new productsModel();
+    }
 
     function action_products()
     {
-     $model = new productsModel();
-     $data = $model->getSortArrayByLowest();
+     $data = $this->model->getSortArrayByLowest();
      self::generate('productList','productList.php', $data);
     }
 
     function action_expensive(){
-        $model = new productsModel();
-        $data = $model->getSortArrayByHighest();
+        $data = $this->model->getSortArrayByHighest();
         self::generate('productList','productList.php', $data);
     }
 
     function action_cheap(){
-        $model = new productsModel();
-        $data = $model->getSortArrayByLowest();
+        $data = $this->model->getSortArrayByLowest();
         self::generate('productList','productList.php', $data);
     }
 

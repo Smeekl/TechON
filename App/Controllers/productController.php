@@ -16,7 +16,7 @@ use Models\productModel;
 Class productController extends  Controller
 {
 
-    function action_products(){
+    function action_products(   ){
         $model = new productModel();
         $data = $model->getSortArrayByLowest();
         self::generate('productList','productList.php', $data);

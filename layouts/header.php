@@ -8,8 +8,8 @@
 <header id="header-dm">
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo justify-content-start">
-            <a href="http://techon" class="navbar-brand mr-sm-1">TechON
-            <img src="/img/lamp.png" class="rounded float-left" alt="..."></a>
+            <a href="http://techon" class="navbar-brand mr-sm-1 text-logo">TechON
+            <img src="/img/lamp.png" class="rounded float-left" alt="На главную"></a>
         </div>
         <form class="form-inline justify-content-between">
             <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">
