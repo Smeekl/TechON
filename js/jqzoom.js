@@ -5,9 +5,9 @@
             align: "left",				// 当前展示图片的位置，则放大的图片在其相对的位置
             thumb_image_width: 400,		// 当前展示图片的宽
             thumb_image_height: 450,	// 当前展示图片的高
-            source_image_width: 900,  	// 放大图片的宽
-            source_image_height: 1200,	// 放大图片的高
-            zoom_area_width: 600, 		// 放大图片的展示区域的宽
+            source_image_width: 650,  	// 放大图片的宽
+            source_image_height: 800,	// 放大图片的高
+            zoom_area_width: 360, 		// 放大图片的展示区域的宽
             zoom_area_height: "justify",// 放大图片的展示区域的高
             zoom_area_distance: 10,     //
             zoom_easing: true,          // 是否淡入淡出
@@ -113,8 +113,8 @@
             if(!$(".bzoom_small_thumbs").length){
                 var top = _option.thumb_image_height+10,
                     width = _option.thumb_image_width,
-                    smwidth = (_option.thumb_image_width / _option.small_thumbs) - 10,
-                    smheight = smwidth / scxy,
+                    smwidth = 120,
+                    smheight = 110,
                     ulwidth =
                         smurl = '',
                     html = '';

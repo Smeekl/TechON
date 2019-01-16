@@ -449,7 +449,7 @@
 <script src="../../../js/jqzoom.js"></script>
 <script>
     $("#bzoom").zoom({
-        zoom_area_width: 350,
+        zoom_area_width: 400,
         small_thumbs: <?=count($data[1]);?>
     });
 </script>
