@@ -8,7 +8,7 @@
 
 return array(
     'main' => 'main/index',
-    'show' => 'products/products',
+    'show' => 'product/products',
     'product' => 'product/view/$1',
     '' => 'main/index'
 );

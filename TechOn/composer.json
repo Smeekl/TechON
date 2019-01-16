@@ -16,7 +16,8 @@
         "psr-4": {
             "Core\\": "App/Core",
             "Controllers\\": "App/Controllers",
-            "Models\\" : "App/Models"
+            "Models\\" : "App/Models",
+            "DataMapping\\" : "App/DataMapping"
         }
     }
 }

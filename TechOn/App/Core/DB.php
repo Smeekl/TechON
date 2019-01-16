@@ -26,7 +26,7 @@ class DB
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
         try {
-            return $pdo = new PDO($dsn, $user, $pass);
+            return $pdo = new PDO($dsn, $user, $pass, $settings);
         } catch (\PDOException $exception)
         {
             echo "Error".$exception->getMessage();

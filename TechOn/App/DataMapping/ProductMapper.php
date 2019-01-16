@@ -18,12 +18,42 @@ class ProductMapper
         $this->pdo = \Core\DB::conn();
     }
 
-    public function getAllProducts(){
-        $query = $this->pdo->query('SELECT products.id, products.viewed, products.title, products.short_title, products.price, product_images.image, products.description, vendors.vendor_title, products.quantity
+    public function getAllProducts($sortType = null){
+        $query = $this->pdo->query('SELECT products.id, manufacturers.manufacturer_title, products.viewed, products.title, products.short_title, products.price, product_images.image, products.description, vendors.vendor_title, products.quantity
                                                 FROM products
-                                                INNER JOIN product_images ON product_images.id = products.id
+                                                INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
+                                                INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1
                                                 INNER JOIN vendors ON vendors.id = products.vendor_id;');
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function setIncrementedViewedCounter($id){
+        $query = $this->pdo->prepare('UPDATE products SET viewed = viewed + 1 WHERE id= :id');
+        $query->execute(array(':id'=>$id));
+        unset($query);
+    }
+
+    public function getProductByID($id){
+
+        $query = $this->pdo->prepare('SELECT products.id, manufacturers.manufacturer_title, products.reviews, products.title, products.short_title, products.price, products.description, vendors.vendor_title, products.quantity
+                                                FROM products
+                                                INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
+                                                INNER JOIN vendors ON vendors.id = products.vendor_id
+                                                WHERE products.id = :id;');
+        $query->execute(array(':id'=>$id));
+        $row = $query->fetchALL(PDO::FETCH_ASSOC);
+        unset($query);
+        $this->setIncrementedViewedCounter($id);
+        $images = $this->getProductImages($id);
+        array_push($row, $images);
+        return $row;
+    }
+
+    public function getProductImages($id){
+        $query = $this->pdo->prepare('Select product_images.image FROM product_images WHERE product_images.id = :id ORDER BY product_images.sort_order DESC');
+        $query->execute(array(':id'=>$id));
+        $row = $query->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
 }

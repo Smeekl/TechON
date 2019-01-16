@@ -7,43 +7,54 @@
     <meta charset="UTF-8">
     <title>TechOn | Make or dream come true</title>
     <link rel="stylesheet" href="../../../css/product.css">
+    <link rel="stylesheet" href="../../../css/slider.css">
 </head>
 <body>
 <?php include_once('layouts/header.php');?>
 <main>
-    <h5 class="pt-4 pl-4 category"><a href="http://techon/show">Category/</a><a href="http://techon/show">Category/</a><?php echo $product['name']?></h5>
+    <h5 class="pt-4 pl-4 category"><a href="http://techon/show">Category/</a><a href="http://techon/show">Category/</a><?=$data[0]['title']?></h5>
     <div class="container pt-4">
         <div class="row">
             <div class="col-sm category">
-                <img src="<?php echo $data['full_img'];?>">
+                    <div class="bzoom_wrap">
+                        <ul id="bzoom">
+                            <?php
+                            foreach($data as $key => $value) {?>
+                            <li>
+                                <img class="bzoom_thumb_image" src="<?=$data[1][$key]['image']?>">
+                                <img class="bzoom_big_image" src="<?=$data[1][$key]['image']?>">
+                            </li>
+                            <?php }?>
+                        </ul>
+                    </div>
             </div>
             <div class="col-sm">
                 <div class="row d-inline-block product">
                     <div class="col-sm pb-2 label">
-                        <h2><?php echo $data['name'];?><h2></h2>
+                        <h2><?=$data[0]['title'];?><h2></h2>
                     </div>
                     <div class="col-sm pb-4 info">
                         <div class="row">
-                            <div class="col-sm"><?php echo $data['mark']?></div>
-                            <div class="col-sm reviews">Reviews:<?php echo $data['reviews'];?></div>
-                            <div class="col-sm">TechOn #<?php echo $data['id'];?></div>
+                            <div class="col-sm"><?=$data[0]['manufacturer_title']?></div>
+                            <div class="col-sm reviews">Reviews:<?=$data[0]['reviews'];?></div>
+                            <div class="col-sm">TechOn #<?=$data[0]['id'];?></div>
                         </div>
                     </div>
-                    <div class="col-sm price pb-4"><?php echo $data['price'];?></div>
+                    <div class="col-sm price pb-4"><?=$data[0]['price']/100;?>$</div>
                     <div class="col-sm shipping pb-4">
                         <span class="free-shiping">
                             Free shipping
                         </span>
                         <br>
                         <div class="arrives">
-                            Arrives by <?php echo date("l,M j", strtotime("+4days")); ?>
+                            Arrives by <?=date("l,M j", strtotime("+4days")); ?>
                             <a href="" class="options">Options
                             </a>
                         </div>
                     </div>
                     <div class="col-sm pickup pb-4">
                         <span class="free-pickup">
-                            Free pickup <?php echo date("l,M j", strtotime("+4days")); ?>
+                            Free pickup <?=date("l,M j", strtotime("+4days")); ?>
                         </span>
                         <br>
                         <div class="ships-to">
@@ -399,7 +410,7 @@
                 </div>
             </div>
         </div>
-        <div class="row about pt-4">
+        <div class="row about pt-4 about-block">
             <div class="col-sm">
                 <div class="row d-inline-block">
                     <div class="col-sm about-item pt-4 pb-4">
@@ -412,13 +423,13 @@
                         <a href="#">See our disclaimer</a>
                         <br>
                         <br>
-                        <?php echo $data['description']?>
+                        <?=$data[0]['description']?>
                     </div>
                     <div class="col-sm mb-4">
                         <p><strong>We aim to show you accurate product information</strong></p>
-                        <ul><?php foreach ($data['about'] as $value) {?>
-                            <li><?php echo $value;?></li>
-                            <?php }?>
+                        <ul><?php if(isset($data[0]['about'])){foreach ($data[0]['about'] as $value) {?>
+                            <li><?=$value;?></li>
+                            <?php }}?>
                         </ul>
                     </div>
                 </div>
@@ -426,8 +437,8 @@
         </div>
     </div>
 </main>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -435,6 +446,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script src="../../../js/jqzoom.js"></script>
+<script>
+    $("#bzoom").zoom({
+        zoom_area_width: 350,
+        small_thumbs: <?=count($data[1]);?>
+    });
+</script>
 <?php include_once('layouts/footer.php');?>
 </body>
 </html>
