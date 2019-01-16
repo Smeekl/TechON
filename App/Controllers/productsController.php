@@ -10,15 +10,15 @@ namespace Controllers;
 
 
 use Core\Controller;
-use Models\productsModel;
+use Models\ProductsModel;
 
-Class productsController extends  Controller
+Class ProductsController extends  Controller
 {
     private $model;
 
     public function __construct()
     {
-        $this->model = new productsModel();
+        $this->model = new ProductsModel();
     }
 
     function action_products()

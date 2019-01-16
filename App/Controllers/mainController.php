@@ -9,7 +9,7 @@
 namespace Controllers;
 
 
-Class mainController extends  \Core\Controller
+Class MainController extends  \Core\Controller
 {
 
 

@@ -10,21 +10,21 @@ namespace Controllers;
 
 
 use Core\Controller;
-use Models\productModel;
+use Models\ProductModel;
 
 
-Class productController extends  Controller
+Class ProductController extends  Controller
 {
 
     function action_products(   ){
-        $model = new productModel();
+        $model = new ProductModel();
         $data = $model->getSortArrayByLowest();
         self::generate('productList','productList.php', $data);
     }
 
     function action_view($id)
     {
-        $model = new productModel();
+        $model = new ProductModel();
         $data = $model->getElementByID($id[1]);
         self::generate('product','product.php', $data);
     }

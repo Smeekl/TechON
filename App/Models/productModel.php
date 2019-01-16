@@ -8,9 +8,8 @@
 namespace Models;
 use DataMapping\ProductMapper;
 
-require_once 'App/data/products.php';
 
-Class productModel extends \Core\Model
+Class ProductModel extends \Core\Model
 {
     private $product;
 
