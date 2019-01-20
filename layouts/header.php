@@ -1,3 +1,7 @@
+<?php
+$mapper = new \DataMapping\UsersMapper;
+$mapper->getSecurityResult($_SESSION['user_id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], md5($_SERVER['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT']));
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +19,12 @@
             <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             <div class="location-sign-in">
-                <a href="#" class="ml-2 mr-2"><img src="https://img.icons8.com/windows/32/000000/marker.png"><span class="dashed-location">Your location</span></a>
-                <a href="?url=authentication" class="mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Sign In</span></a>
+                <?php if(!$_SESSION['isAuth'] && (!$_SESSION['security_result'])){?>
+                <a href="http://techon/authentication" class="ml-4 mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Sign In</span></a>
+                <?php } else {?>
+                    <a href="http://techon/profile" class="ml-4 mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Hello, <?=$_SESSION['user_fname']?></span></a>
+                <?php }?>
+                <a href="http://techon/cart" class="ml-2 mr-2"><img src="https://img.icons8.com/windows/30/000000/shopping-cart.png"><span class="dashed-location">Cart</span></a>
             </div>
         </form>
     </nav>

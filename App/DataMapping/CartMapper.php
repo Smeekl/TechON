@@ -8,6 +8,7 @@
 
 namespace Mappers;
 
+use PDO;
 
 class CartMapper
 {

@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php include_once('layouts/header.php');
-?>
+<?php include_once('layouts/header.php'); ?>
 <div class="wrapper">
     <main>
         <div class="row d-inline justify-content-between">

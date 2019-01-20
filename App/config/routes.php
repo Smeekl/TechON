@@ -10,5 +10,7 @@ return array(
     'main' => 'main/index',
     'show' => 'product/products',
     'product' => 'product/view/$1',
+    'authentication' => 'auth/auth',
+    'cart' => 'cart/index',
     '' => 'main/index'
 );

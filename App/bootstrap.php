@@ -7,6 +7,10 @@
  */
 require_once 'vendor/autoload.php';
 
+if (isset($_COOKIE['PHPSESSID'])){
+    session_start();
+}
+
 use Core\Router;
 
 $router = new Router();
