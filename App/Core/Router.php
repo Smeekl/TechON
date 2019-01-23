@@ -36,10 +36,10 @@ Class Router{
                 $params = $segments;
 
                 $result = call_user_func(array($controllerName, $actionName), $params);
-
-                if ($result != null){
+                if ($result != null) {
                     break;
                 }
+                break;
             }
         }
     }

@@ -12,7 +12,7 @@ use Models\AuthModel;
 
 Class AuthController extends \Core\Controller
 {
-    function action_auth($email = null)
+    function action_auth()
     {
         $model = new AuthModel();
         $data = $model->Authorization($_POST['email'], $_POST['password']);

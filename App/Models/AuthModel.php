@@ -23,35 +23,48 @@ Class AuthModel extends \Core\Model
     public function Authorization($email, $password)
     {
         $data = $this->user->getUser($email);
-        $hash = md5($data[0]['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT']);
+        $hash = md5($_SERVER['HTTP_USER_AGENT']. self::getUserIp());
 
-        if($_SESSION['isAuth']){
+        if ($_SESSION['isAuth'] && $_SESSION['security_result']) {
             header("Location: http://techon");
         } else {
-        
-        if ($email == $data[0]['email'] && password_verify($password, $data[0]['password'])){
-            if(!isset($_SESSION)){
-                session_start();
-            }
-            $this->user->setSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
 
-            $_SESSION['isAuth'] = true;
-            $_SESSION['user_id'] = $data[0]['id'];
-            $_SESSION['user_fname'] = $data[0]['first_name'];
-        } else {
-            $_SESSION['isAuth'] = false;
-            $_SESSION['security_result'] = false;
-        }}
+            if ($email == $data[0]['email'] && password_verify($password, $data[0]['password'])){
+                if(!isset($_SESSION)){
+                    session_start();
+                }
+                $this->user->setSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
+
+                $_SESSION['isAuth'] = true;
+                $_SESSION['user_id'] = $data[0]['id'];
+                $_SESSION['user_fname'] = $data[0]['first_name'];
+            } else {
+                $_SESSION['isAuth'] = false;
+                $_SESSION['security_result'] = false;
+            }}
 
         return $_SESSION['isAuth'];
     }
 
-    private function isVerify($email,$hash){
-        if($this->user->getSecurityResult($email, $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash)[0]['COUNT(*)'] == 1){
-         return true;
+    public function isVerify($id)
+    {
+
+        $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
+        if ($this->user->getSecurityResult($id, $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash)[0]['COUNT(*)'] == 1) {
+            return $_SESSION['security_result'] = true;
         } else {
-            return false;
+            return $_SESSION['security_result'] = false;
         }
     }
 
+    private static function getUserIp(){
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip=$_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip=$_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
-$mapper = new \DataMapping\UsersMapper;
-$mapper->getSecurityResult($_SESSION['user_id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], md5($_SERVER['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT']));
+$model = new \Models\AuthModel();
+$model->isVerify($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +18,7 @@ $mapper->getSecurityResult($_SESSION['user_id'], $_SERVER['REMOTE_ADDR'], $_SERV
         <form class="form-inline justify-content-between">
             <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <div class="location-sign-in">
-                <?php if(!$_SESSION['isAuth'] && (!$_SESSION['security_result'])){?>
+            <div class="location-sign-in"><?php if(!$_SESSION['isAuth'] || (!$_SESSION['security_result'])){?>
                 <a href="http://techon/authentication" class="ml-4 mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Sign In</span></a>
                 <?php } else {?>
                     <a href="http://techon/profile" class="ml-4 mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Hello, <?=$_SESSION['user_fname']?></span></a>
@@ -144,8 +143,6 @@ $mapper->getSecurityResult($_SESSION['user_id'], $_SERVER['REMOTE_ADDR'], $_SERV
         </div>
     </nav>
 </header>
-
-
 </body>
 </html>
 
