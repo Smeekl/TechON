@@ -1,5 +1,5 @@
 <?php
-$model = new \Models\AuthModel();
+$model = new \Models\UserModel();
 $model->isVerify($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>

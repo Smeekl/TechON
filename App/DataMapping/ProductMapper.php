@@ -7,6 +7,7 @@
  */
 
 namespace DataMapping;
+
 use PDO;
 
 class ProductMapper
@@ -18,7 +19,8 @@ class ProductMapper
         $this->pdo = \Core\DB::conn();
     }
 
-    public function getAllProducts($sortType = null){
+    public function getAllProducts($sortType = null)
+    {
         $query = $this->pdo->query('SELECT products.id, manufacturers.manufacturer_title, products.viewed, products.title, products.short_title, products.price, product_images.image, products.description, vendors.vendor_title, products.quantity
                                                 FROM products
                                                 INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
@@ -28,20 +30,21 @@ class ProductMapper
         return $row;
     }
 
-    public function setIncrementedViewedCounter($id){
+    public function setIncrementedViewedCounter($id)
+    {
         $query = $this->pdo->prepare('UPDATE products SET viewed = viewed + 1 WHERE id= :id');
-        $query->execute(array(':id'=>$id));
+        $query->execute(array(':id' => $id));
         unset($query);
     }
 
-    public function getProductByID($id){
-
+    public function getProductByID($id)
+    {
         $query = $this->pdo->prepare('SELECT products.id, manufacturers.manufacturer_title, products.reviews, products.title, products.short_title, products.price, products.description, vendors.vendor_title, products.quantity
                                                 FROM products
                                                 INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
                                                 INNER JOIN vendors ON vendors.id = products.vendor_id
                                                 WHERE products.id = :id;');
-        $query->execute(array(':id'=>$id));
+        $query->execute(array(':id' => $id));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
         unset($query);
         $this->setIncrementedViewedCounter($id);
@@ -50,9 +53,10 @@ class ProductMapper
         return $row;
     }
 
-    public function getProductImages($id){
+    public function getProductImages($id)
+    {
         $query = $this->pdo->prepare('Select product_images.image FROM product_images WHERE product_images.id = :id ORDER BY product_images.sort_order DESC');
-        $query->execute(array(':id'=>$id));
+        $query->execute(array(':id' => $id));
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }

@@ -5,7 +5,9 @@
  * Date: 24.12.2018
  * Time: 13:52
  */
+
 namespace Models;
+
 use DataMapping\ProductMapper;
 
 
@@ -32,6 +34,7 @@ Class CategoryModel extends \Core\Model
                 return strnatcmp($a[$key], $b[$key]);
             };
         }
+
         usort($data, array_sorter('price'));
 
         return $data;
