@@ -51,4 +51,16 @@ class UsersMapper
         $query->execute(array(':id' => $id, ':user_agent' => $user_agent, ':ip' => $ip, ':hash' => $hash));
         unset($query);
     }
+
+
+    public function userAdd($email, $password)
+    {
+        $query = $this->pdo->prepare('
+            INSERT INTO users 
+            (email, password) 
+            VALUES (:email, :password);
+            ');
+        $query->execute(array(':email' => $email, ':password' => password_hash($password, PASSWORD_DEFAULT)));
+        unset($query);
+    }
 }

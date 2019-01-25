@@ -20,7 +20,7 @@ Class UserModel extends \Core\Model
         $this->user = new UsersMapper();
     }
 
-    public function Authorization($email, $password)
+    public function authorization($email, $password)
     {
         $data = $this->user->getUser($email);
         $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
@@ -77,5 +77,31 @@ Class UserModel extends \Core\Model
         session_destroy();
         unset($_SESSION);
         header("Location: http://techon");
+    }
+
+    public function registration($email, $password)
+    {
+      if (!$this->userExist($email)) {
+          var_dump($_POST);
+//            $this->user->userAdd($this->getValidEmail($email), $password);
+       }
+    }
+
+    public function userExist($email)
+    {
+        if (!$this->user->getUser($email) === null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getValidEmail($email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $email;
+        } else {
+            return false;
+        }
     }
 }
