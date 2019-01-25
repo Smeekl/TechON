@@ -5,7 +5,7 @@ body, html {
 
 .card-container.card {
     max-width: 350px;
-    padding: 40px 40px;
+    padding: 35px 40px;
 }
 
 .btn {
@@ -23,8 +23,8 @@ body, html {
 .card {
     background-color: #F7F7F7;
     /* just in case there no content*/
-    padding: 20px 25px 30px;
-    margin: 0 auto 105px;
+    padding: 20px 25px 15px;
+    margin: 0 auto 100px;
     margin-top: 50px;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
@@ -40,9 +40,6 @@ body, html {
     height: 96px;
     margin: 0 auto 10px;
     display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
 }
 
 /*
@@ -131,4 +128,21 @@ body, html {
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+
+.join-us {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgb(104, 145, 162);
+}
+
+.join-us:hover,
+.join-us:active,
+.join-us:focus{
+    color: rgb(12, 97, 33);
+}
+
+.password-check{
+    font-size: 12px;
 }

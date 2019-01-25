@@ -15,15 +15,15 @@ Class UserController extends \Core\Controller
     function action_auth()
     {
         $model = new UserModel();
-        $model->Authorization($_POST['email'], $_POST['password']);
+        $model->authorization($_POST['email'], $_POST['password']);
         self::generate('auth', 'authentication.php');
     }
 
     function action_registration()
     {
         $model = new UserModel();
-        $model->Authorization($_POST['email'], $_POST['password']);
-        self::generate('auth', 'authentication.php');
+        $model->registration($_POST['email'], $_POST['password']);
+        self::generate('auth', 'registration.php');
     }
 
     function action_logout()
