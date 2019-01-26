@@ -16,7 +16,7 @@
                 <div class="col-sm">
                     <div class="row">
                         <div class="col-sm dashing-deals">
-                            <img class="dashing-deals"
+                            <img class="dashing-deals" width="770px"
                                  src="//i5.walmartimages.com/dfw/4ff9c6c9-7a3c/k2-_73cacff5-6ba8-46c6-86fa-35f312017668.v1.jpg?odnWidth=912&odnHeight=500&odnBg=ffffff">
                         </div>
                         <div class="col-sm dashing-deals pt-5">

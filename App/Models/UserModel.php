@@ -81,10 +81,11 @@ Class UserModel extends \Core\Model
 
     public function registration($email, $password)
     {
-      if (!$this->userExist($email)) {
-          var_dump($_POST);
-//            $this->user->userAdd($this->getValidEmail($email), $password);
-       }
+      if (!$this->userExist($email) || $email!= '') {
+          $this->user->userAdd($this->getValidEmail($email), $password);
+      } else {
+          echo 123;
+      }
     }
 
     public function userExist($email)

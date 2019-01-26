@@ -16,7 +16,7 @@ class ProductMapper
 
     public function __construct()
     {
-        $this->pdo = \Core\DB::conn();
+        $this->pdo = \Core\DB::instance();
     }
 
     public function getAllProducts($sortType = null)

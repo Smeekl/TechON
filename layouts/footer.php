@@ -8,11 +8,11 @@
 <footer>
     <div class="container-fluid bg-light">
         <div class="container terms">
-            <div class="row">
-                <div class="row terms-list-full">
+            <div class="row-offset-4">
+                <div class="row terms-list-full" align="center">
                     <div class="col-sm mr-4">
                         <div class="terms-name">TechOn Services</div>
-                        <div class="row terms-list">
+                        <div class="terms-list">
                             <div class="col-sm">
                                 <a href="#">Grocery Pickup & Delivery</a>
                             </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-sm mr-4">
                         <div class="terms-name">Get to Know Us</div>
-                        <div class="row terms-list">
+                        <div class="terms-list">
                             <div class="col-sm">
                                 <a href="#">Our Company</a>
                             </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-sm mr-4">
                         <div class="terms-name">TechOn.com</div>
-                        <div class="row terms-list">
+                        <div class="terms-list">
                             <div class="col-sm">
                                 <a href="#">TechOn Labs</a>
                             </div>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-sm mr-4">
                         <div class="terms-name">Customer Service</div>
-                        <div class="row terms-list">
+                        <div class="terms-list">
                             <div class="col-sm">
                                 <a href="#">Help Center</a>
                             </div>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-sm mr-4">
                         <div class="terms-name">In The Spotlight</div>
-                        <div class="row terms-list">
+                        <div class="terms-list">
                             <div class="col-sm">
                                 <a href="#">Ellen's List</a>
                             </div>
