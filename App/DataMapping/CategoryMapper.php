@@ -9,7 +9,7 @@
 namespace DataMapping;
 use PDO;
 
-class ProductMapper
+class CategoryMapper
 {
     private $pdo;
 

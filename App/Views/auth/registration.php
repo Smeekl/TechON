@@ -25,7 +25,7 @@
             <input name="confirm_password" type="password" id="confirm_password" class="form-control" placeholder="Confirm password"
                    required>
             <span class="password-check" id='message'></span>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="login"
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="login" onclick="AjaxRegister()"
             >Sign Up
             </button>
         </form>

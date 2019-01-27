@@ -32,11 +32,16 @@ Class UserModel extends \Core\Model
                 if (!isset($_SESSION)) {
                     session_start();
                 }
-                $this->user->setSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
+                $this->user->updateSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
 
                 $_SESSION['isAuth'] = true;
                 $_SESSION['user_id'] = $data[0]['id'];
-                $_SESSION['user_fname'] = $data[0]['first_name'];
+                if ($data[0]['first_name'] == null){
+                    $_SESSION['user_fname'] = 'Ghost';
+                } else {
+                    $_SESSION['user_fname'] = $data[0]['first_name'];
+                }
+
                 header("Location: http://techon");
             } else {
                 $_SESSION['isAuth'] = false;
@@ -49,9 +54,8 @@ Class UserModel extends \Core\Model
 
     public function isVerify($id)
     {
-
         $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
-        if ($this->user->getSecurityResult($id, $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash)[0]['COUNT(*)'] == 1) {
+        if ($this->user->getSecurityResult($id, self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash)[0]['COUNT(*)'] == 1) {
             return $_SESSION['security_result'] = true;
         } else {
             return $_SESSION['security_result'] = false;
@@ -81,20 +85,23 @@ Class UserModel extends \Core\Model
 
     public function registration($email, $password)
     {
-      if (!$this->userExist($email) || $email!= '') {
+
+      if (!$this->userExist($email) && $email != '') {
           $this->user->userAdd($this->getValidEmail($email), $password);
+          $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
+          $data = $this->user->getUserInfo($email);
+          $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
+          $this->authorization($email, $password);
+          unset($_POST);
+          header("Location: http://techon");
       } else {
-          echo 123;
+          echo json_encode(['code'=>200, 'msg'=>'Message']);
       }
     }
 
     public function userExist($email)
     {
-        if (!$this->user->getUser($email) === null) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->user->getUser($email)[0] !== null ? true : false;
     }
 
     public function getValidEmail($email)
