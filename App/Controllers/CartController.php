@@ -8,6 +8,7 @@
 
 namespace Controllers;
 
+use Models\CartModel;
 
 Class CartController extends \Core\Controller
 {
@@ -15,8 +16,10 @@ Class CartController extends \Core\Controller
 
     function action_cart()
     {
-        $view = new \Core\View();
-        $view->generate('cart', 'cart.php');
+        $cartModel = new CartModel();
+        $data = $cartModel->getProductsOnCart($_SESSION['user_id']);
+        self::generate('cart', 'cart.php', $data);
     }
-
 }
+
+

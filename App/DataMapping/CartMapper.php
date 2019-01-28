@@ -43,4 +43,19 @@ class CartMapper
         unset($query);
     }
 
+    public function getCountProductsInCart($id)
+    {
+        $query = $this->pdo->prepare('
+            SELECT COUNT(*) 
+            FROM products 
+            INNER JOIN cart_product ON cart_product.product_id = products.id 
+            INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1 
+            WHERE cart_product.user_id = :id
+            GROUP BY cart_product.user_id;
+            ');
+        $query->execute(array(':id' => $id));
+        $row = $query->fetchALL(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
 }

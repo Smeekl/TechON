@@ -34,251 +34,80 @@
         <div class="col-10">
             <div class="row d-inline">
                 <div class="col cart-elements">
-                    <h1 class="display-4 mt-4 total-amount">Products in cart:</h1>
+                    <h1 class="display-4 mt-4 total-amount">Products in cart: <?=$_SESSION['products_in_cart']?></h1>
                     <hr class="my-4">
-                    <div class="row cart-product justify-content-between">
-                        <div class="col-sm-2 product-img">
-                            <div class="row">
-                                <div class="col-sm">
+                    <?php foreach ($data as $key => $value){?>
+                        <div class="row cart-product justify-content-between">
+                            <div class="col-2 product-img">
+                                <div class="row">
                                     <div class="col-sm">
-                                        <div class="cart-img">
-                                            <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                                        <div class="col-sm">
+                                            <div class="row d-inline">
+                                                <div class="col">
+                                                    <div class="cart-img">
+                                                        <img width="120px" height="120px" src="<?=$data[$key]['image'];?>">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3 product-about">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="col-sm product-name"><a href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
-                                </div>
-                                <div class="col">
-                                    <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
-                                </div>
-                                <div class="col pt-2">
-                                    <div class="col"><span class="seller">Seller:</span><br>
-                                        <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-qty">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Qty: </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="input-group">
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected>1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-price">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Price:</div>
-                                </div>
-                                <div class="col-sm total-price">
-                                    123
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <div class="row cart-product justify-content-between">
-                        <div class="col-sm-2 product-img">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">
-                                        <div class="cart-img">
-                                            <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                            <div class="col-10 product-about">
+                                <div class="row d-inline">
+                                    <div class="col mb-4">
+                                        <div class="col">
+                                            <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[$key]['title'];?></a></div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 product-about">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="col-sm product-name"><a href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
-                                </div>
-                                <div class="col">
-                                    <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
-                                </div>
-                                <div class="col pt-2">
-                                    <div class="col"><span class="seller">Seller:</span><br>
-                                        <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-qty">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Qty: </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="input-group">
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected>1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-price">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Price:</div>
-                                </div>
-                                <div class="col-sm total-price">
-                                    123
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <div class="row cart-product justify-content-between">
-                        <div class="col-sm-2 product-img">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">
-                                        <div class="cart-img">
-                                            <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="col">
+                                                <div class="col-sm"><strong class="about-price"><?=$data[$key]['price']/100 ."$";?></strong></div>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="col-sm">Qty: </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="input-group">
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option selected>1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-2 product-price">
+                                                    <div class="row">
+                                                        <div class="col-sm total-price">
+                                                            55$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 product-about">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="col-sm product-name"><a href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
-                                </div>
-                                <div class="col">
-                                    <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
-                                </div>
-                                <div class="col pt-2">
-                                    <div class="col"><span class="seller">Seller:</span><br>
-                                        <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-qty">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Qty: </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="input-group">
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected>1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
+                                    <div class="col ml-3">
+                                        <div class="col"><span class="seller">Seller:</span><br>
+                                            <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-2 product-price">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Price:</div>
-                                </div>
-                                <div class="col-sm total-price">
-                                    123
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <div class="row cart-product justify-content-between">
-                        <div class="col-sm-2 product-img">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">
-                                        <div class="cart-img">
-                                            <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 product-about">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="col-sm product-name"><a href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
-                                </div>
-                                <div class="col">
-                                    <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
-                                </div>
-                                <div class="col pt-2">
-                                    <div class="col"><span class="seller">Seller:</span><br>
-                                        <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-qty">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Qty: </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="input-group">
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected>1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 product-price">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="col-sm">Price:</div>
-                                </div>
-                                <div class="col-sm total-price">
-                                    123
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <hr class="my-4">
+                    <?php }?>
                 </div>
                 <div class="col cart-elements">
                     <h1 class="display-4 text-right total-amount">Total amount: 0</h1>

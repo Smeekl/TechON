@@ -21,8 +21,19 @@ class CartModel extends Model
         $this->cart = new CartMapper();
     }
 
-    public function getProductsOnCart($id){
+    public function getProductsOnCart($id)
+    {
+        $this->getCountOfProducts($id);
         return $data = $this->cart->getCartItems($id);
+    }
+
+    public function getCountOfProducts($id)
+    {
+        if (!empty($this->cart->getCountProductsInCart($id))) {
+            $_SESSION['products_in_cart'] = current($this->cart->getCountProductsInCart($id)[0]);
+        } else {
+            $_SESSION['products_in_cart'] = 0;
+        }
     }
 
 }

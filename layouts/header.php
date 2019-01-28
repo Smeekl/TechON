@@ -156,5 +156,3 @@ $model->isVerify($_SESSION['user_id']);
 </header>
 </body>
 </html>
-
-

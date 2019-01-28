@@ -73,76 +73,54 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="myLargeModalLabel"><i class="fas fa-check size-2 pr-2"></i>You just added 1 item(5 total)</h5>
+                                        <h5 class="modal-title" id="myLargeModalLabel"><i class="fas fa-check size-2 pr-2"></i>You just added 1 item(<?=$_SESSION['products_in_cart']?> total)</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <!-- Cart items-->
-                                        <?php
-                                        foreach ($data[2] as $key => $value){?>
-                                        <div class="row cart-product justify-content-between">
-                                            <div class="col-sm-2 product-img">
-                                                <div class="row">
-                                                    <div class="col-sm">
+                                        <?php foreach ($data[2] as $key => $value){?>
+                                            <div class="row cart-product justify-content-between">
+                                                <div class="col-2 product-img">
+                                                    <div class="row">
                                                         <div class="col-sm">
-                                                            <div class="cart-img">
-                                                                <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                                                            <div class="col-sm">
+                                                                <div class="row d-inline">
+                                                                    <div class="col">
+                                                                        <div class="cart-img">
+                                                                            <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-3 product-about">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="col-sm product-name"><a href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
-                                                    </div>
-                                                    <div class="col pt-2">
-                                                        <div class="col"><span class="seller">Seller:</span><br>
-                                                            <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2 product-qty">
-                                                <div class="row">
-                                                    <div class="col-sm">
-                                                        <div class="col-sm">Qty: </div>
-                                                    </div>
-                                                    <div class="col-sm">
-                                                        <div class="input-group">
-                                                            <select class="custom-select" id="inputGroupSelect01">
-                                                                <option selected>1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-                                                                <option value="9">9</option>
-                                                                <option value="10">10</option>
-                                                            </select>
+                                                <div class="col-10 product-about">
+                                                    <div class="row d-inline">
+                                                        <div class="col mb-4">
+                                                            <div class="col">
+                                                                <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $data[2][$key]['id'] . "/" . $data[2][$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row ml-1">
+                                                            <div class="col">
+                                                                <div class="col">
+                                                                    <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col d-flex">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col ml-3">
+                                                            <div class="col"><span class="seller">Seller:</span><br>
+                                                                <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-2 product-price">
-                                                <div class="row">
-                                                    <div class="col-sm">
-                                                        <div class="col-sm">Price:</div>
-                                                    </div>
-                                                    <div class="col-sm total-price">
-                                                        123
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="my-4">
+                                            <hr class="my-4">
                                         <!-- Cart items-->
                                         <?php } ?>
 

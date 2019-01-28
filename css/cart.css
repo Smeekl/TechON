@@ -19,3 +19,12 @@
 .cart-elements{
     margin-bottom: 20px;
 }
+
+.cart-product a {
+    font-size: 16px;
+    color: black;
+}
+
+.cart-product a :hover{
+    color: #535353;
+}

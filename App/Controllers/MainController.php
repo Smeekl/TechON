@@ -15,8 +15,7 @@ Class MainController extends  \Core\Controller
 
     function action_index()
     {
-        $view = new \Core\View();
-        $view->generate('index', 'index.php');
+       self::generate('index', 'index.php');
     }
 
 }
