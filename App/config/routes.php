@@ -14,5 +14,6 @@ return array(
     'registration' => 'user/registration',
     'logout' => 'user/logout',
     'cart' => 'cart/cart',
+    'profile' => 'profile/profile',
     '' => 'main/index'
 );
