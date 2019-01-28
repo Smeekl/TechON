@@ -28,3 +28,7 @@
 .cart-product a :hover{
     color: #535353;
 }
+
+.btn-light{
+    background-color: #dfdfdf;
+}

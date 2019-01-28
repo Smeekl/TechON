@@ -22,16 +22,16 @@
             <h3 class="mt-4">Menu</h3>
             <hr class="my-4">
             <ul class="nav nav-tabs nav-stacked d-inline-block left-nav">
-                <li><img src="https://img.icons8.com/office/30/000000/user.png"><a class="ml-2" href='#'>Profile</a>
+                <li><img src="https://img.icons8.com/office/30/000000/user.png"><a class="ml-2" href='http://techon/profile'>Profile</a>
                 </li>
                 <hr class="my-2">
-                <li><img src="https://img.icons8.com/office/30/000000/shopping-cart.png"><a class="ml-2" href='#'>My
+                <li><img src="https://img.icons8.com/office/30/000000/shopping-cart.png"><a class="ml-2" href='http://techon/cart'>My
                         Cart</a></li>
                 <hr class="my-2">
                 <li><img src="https://img.icons8.com/office/30/000000/check.png"><a class="ml-2" href='#'>My orders</a>
                 </li>
                 <hr class="my-2">
-                <li><img src="https://img.icons8.com/office/30/000000/export.png"><a class="ml-2" href='#'>Log Out</a>
+                <li><img src="https://img.icons8.com/office/30/000000/export.png"><a class="ml-2" href='http://techon/logout'>Log Out</a>
                 </li>
             </ul>
         </div>
@@ -164,6 +164,8 @@
                 </div>
             </div><!--Gender-->
         </div>
+        <hr class="my-4">
+        <button type="button" class="btn btn-light mb-2 mt-2"><img class="mr-2" src="https://img.icons8.com/ios-glyphs/30/000000/save.png">Save changes</button>
     </div>
 </div>
 <?php include_once('layouts/footer.php'); ?>
