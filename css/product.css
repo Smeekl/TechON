@@ -51,7 +51,7 @@ a:hover{
     color: gray;
 }
 
-.about-price{
+.about-price, .total-price{
     font-size: 22px;
 }
 

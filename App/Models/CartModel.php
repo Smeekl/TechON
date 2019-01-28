@@ -8,8 +8,21 @@
 
 namespace Models;
 
+use DataMapping\CartMapper;
+use Core\Model;
 
-class CartModel
+class CartModel extends Model
 {
+    private $cart;
+    private $product;
+
+    public function __construct()
+    {
+        $this->cart = new CartMapper();
+    }
+
+    public function getProductsOnCart($id){
+        return $data = $this->cart->getCartItems($id);
+    }
 
 }

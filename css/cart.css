@@ -1,0 +1,21 @@
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.left-nav a{
+    font-size: 16px;
+    color: black;
+}
+
+.left-nav a :hover{
+    color: #535353;
+}
+
+.total-amount{
+    font-size: 24px;
+}
+
+.cart-elements{
+    margin-bottom: 20px;
+}

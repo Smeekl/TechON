@@ -76,7 +76,10 @@ class UsersMapper
 
     public function getUserInfo($email)
     {
-        $query = $this->pdo->prepare('SELECT users.id,email,password,first_name,second_name,last_name FROM users WHERE email = :email');
+        $query = $this->pdo->prepare('
+        SELECT users.id,email,password,first_name,second_name,last_name 
+        FROM users WHERE email = :email
+        ');
         $query->execute(array(':email' => $email));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
         return $row;

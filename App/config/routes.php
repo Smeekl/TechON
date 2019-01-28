@@ -13,6 +13,6 @@ return array(
     'authentication' => 'user/auth',
     'registration' => 'user/registration',
     'logout' => 'user/logout',
-    'cart' => 'cart/index',
+    'cart' => 'cart/cart',
     '' => 'main/index'
 );
