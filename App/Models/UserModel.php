@@ -8,6 +8,7 @@
 
 namespace Models;
 
+use Core\Redirect;
 use DataMapping\UsersMapper;
 
 
@@ -26,7 +27,7 @@ Class UserModel extends \Core\Model
         $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
 
         if ($_SESSION['isAuth'] && $_SESSION['security_result']) {
-            header("Location: http://techon");
+            Redirect::home();
         } else {
             if ($email == $data[0]['email'] && password_verify($password, $data[0]['password'])) {
                 if (!isset($_SESSION)) {
@@ -42,7 +43,7 @@ Class UserModel extends \Core\Model
                     $_SESSION['user_fname'] = $data[0]['first_name'];
                 }
 
-                header("Location: http://techon");
+                Redirect::home();
             } else {
                 $_SESSION['isAuth'] = false;
                 $_SESSION['security_result'] = false;
@@ -80,7 +81,7 @@ Class UserModel extends \Core\Model
         $_SESSION['isLogged'] = false;
         session_destroy();
         unset($_SESSION);
-        header("Location: http://techon");
+        Redirect::home();
     }
 
     public function registration($email, $password)
@@ -93,7 +94,7 @@ Class UserModel extends \Core\Model
           $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
           $this->authorization($email, $password);
           unset($_POST);
-          header("Location: http://techon");
+          Redirect::home();
       } else {
 
       }
