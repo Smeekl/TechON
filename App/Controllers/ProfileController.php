@@ -13,10 +13,15 @@ use Models\UserModel;
 Class ProfileController extends \Core\Controller
 {
 
+    private $user;
+
+    public function __construct()
+    {
+        $this->user = new UserModel();
+    }
 
     function action_profile()
     {
-        $user = new UserModel();
         self::generate('profile', 'profile.php');
     }
 }

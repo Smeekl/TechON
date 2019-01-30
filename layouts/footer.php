@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
+    <script src="/js/search.js"></script>
     <link rel="stylesheet" href="/css/footer.css">
     <meta charset="UTF-8">
 </head>

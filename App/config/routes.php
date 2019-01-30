@@ -15,5 +15,7 @@ return array(
     'logout' => 'user/logout',
     'cart' => 'cart/cart',
     'profile' => 'profile/profile',
+    'search' => 'search/search',
+    'addToCart' => 'cart/add',
     '' => 'main/index'
 );

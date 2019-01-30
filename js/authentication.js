@@ -5,7 +5,10 @@ $("#authForm").submit(function () {
         url: "/authentication",
         data: str,
         success: function (html) {
-            console.log(123);
+            console.log('123');
+        },
+        error: function () {
+            alert('123');
         }
     });
     return false;

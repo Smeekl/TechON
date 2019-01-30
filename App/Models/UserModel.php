@@ -95,7 +95,7 @@ Class UserModel extends \Core\Model
           unset($_POST);
           header("Location: http://techon");
       } else {
-          echo json_encode(['code'=>200, 'msg'=>'Message']);
+
       }
     }
 

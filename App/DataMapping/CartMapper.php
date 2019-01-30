@@ -22,7 +22,7 @@ class CartMapper
     public function getCartItems($id)
     {
         $query = $this->pdo->prepare('
-            SELECT products.id,title,short_title,products.price, product_images.image, cart_product.user_id,count FROM products 
+            SELECT products.id,title,short_title,products.price, product_images.image, cart_product.user_id FROM products 
             INNER JOIN cart_product ON cart_product.product_id = products.id
             INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1
             WHERE cart_product.user_id = :id;
@@ -35,11 +35,18 @@ class CartMapper
     public function addToCart($user_id, $product_id)
     {
         $query = $this->pdo->prepare('
-            INSERT INTO users 
-            (email, password) 
-            VALUES (:email, :password);
+            INSERT INTO cart 
+            (user_id)
+            VALUES (:user_id);
             ');
-        $query->execute(array(':id' => $user_id, ':password' => password_hash($product_id, PASSWORD_DEFAULT)));
+        $query->execute(array(':user_id' => $user_id));
+        unset($query);
+        $query = $this->pdo->prepare('
+            INSERT INTO cart_product 
+            (user_id, product_id) 
+            VALUES (:user_id, :product_id);
+            ');
+        $query->execute(array(':user_id' => $user_id, ':product_id' => $product_id));
         unset($query);
     }
 

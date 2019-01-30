@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -68,7 +66,7 @@
                         </div>
                     </div>
                     <div class="col-sm buy">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">Add to Cart</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" onclick="addToCart(<?=$data[0]['id']?>)" data-target=".bd-example-modal-lg">Add to Cart</button>
                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -78,56 +76,58 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <!-- Cart items-->
-                                        <?php foreach ($data[2] as $key => $value){?>
-                                            <div class="row cart-product justify-content-between">
-                                                <div class="col-2 product-img">
-                                                    <div class="row">
-                                                        <div class="col-sm">
+                                        <div class="modal-body">
+                                            <!-- Cart items-->
+                                            <?php foreach ($data[2] as $key => $value){?>
+                                                <div class="row cart-product justify-content-between">
+                                                    <div class="col-2 product-img">
+                                                        <div class="row">
                                                             <div class="col-sm">
-                                                                <div class="row d-inline">
-                                                                    <div class="col">
-                                                                        <div class="cart-img">
-                                                                            <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                                                                <div class="col-sm">
+                                                                    <div class="row d-inline">
+                                                                        <div class="col">
+                                                                            <div class="cart-img">
+                                                                                <img width="120px" height="120px" src="<?=$data[2][$key]['image'];?>">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-10 product-about">
-                                                    <div class="row d-inline">
-                                                        <div class="col mb-4">
-                                                            <div class="col">
-                                                                <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $data[2][$key]['id'] . "/" . $data[2][$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row ml-1">
-                                                            <div class="col">
+                                                    <div class="col-10 product-about">
+                                                        <div class="row d-inline">
+                                                            <div class="col mb-4">
                                                                 <div class="col">
-                                                                    <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
+                                                                    <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $data[2][$key]['id'] . "/" . $data[2][$key]['short_title'] ?>"><?=$data[2][$key]['title'];?></a></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col d-flex">
+                                                            <div class="row ml-1">
+                                                                <div class="col">
+                                                                    <div class="col">
+                                                                        <div class="col-sm"><strong class="about-price"><?=$data[2][$key]['price']/100 ."$";?></strong></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col d-flex">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col ml-3">
-                                                            <div class="col"><span class="seller">Seller:</span><br>
-                                                                <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
+                                                            <div class="col ml-3">
+                                                                <div class="col"><span class="seller">Seller:</span><br>
+                                                                    <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <hr class="my-4">
-                                        <!-- Cart items-->
-                                        <?php } ?>
-
+                                                <hr class="my-4">
+                                                <!-- Cart items-->
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-arrow-left size-2 pr-2"></i>Continue Shopping</button>
-                                        <button type="button" class="btn btn-primary"><i class="fas fa-shopping-cart size-2 pr-2"></i>Check Out</button>
+                                        <form action="http://techon/cart">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-shopping-cart size-2 pr-2"></i>Go to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

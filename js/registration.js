@@ -23,9 +23,11 @@ function AjaxRegister() {
             data: {email:email, password:password},
             dataType: "json",
             error: function(data){
-                alert(data.msg);
+                alert(123);
             },
-            success: success
+            success: function(data){
+                alert(123);
+            },
         }
     );
 }

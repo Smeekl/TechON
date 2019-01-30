@@ -20,6 +20,12 @@ Class CartController extends \Core\Controller
         $data = $cartModel->getProductsOnCart($_SESSION['user_id']);
         self::generate('cart', 'cart.php', $data);
     }
+
+    function action_add(){
+        $product_id = $_POST['product_id'];
+        $cart = new CartModel();
+        $cart->addToCart($_SESSION['user_id'],$product_id);
+    }
 }
 
 

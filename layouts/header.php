@@ -11,13 +11,13 @@ $model->isVerify($_SESSION['user_id']);
 <body>
 <header id="header-dm">
     <nav class="navbar navbar-light bg-light justify-content-between">
-        <div class="logo justify-content-start">
+        <div class="logo justify-   content-start">
             <a href="http://techon" class="navbar-brand mr-sm-1 text-logo">TechON
             <img src="/img/lamp.png" class="rounded float-left" alt="На главную"></a>
         </div>
         <form class="form-inline justify-content-between">
-            <input class="form-control mr-sm-4" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-4" id="#searchInput" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn bat btn-outline-success my-2 my-sm-0" onclick="Search()" type="button">Search</button>
             <div class="location-sign-in">
                 <?php if(!$_SESSION['isAuth'] || (!$_SESSION['security_result'])){?>
                 <a href="http://techon/authentication" class="ml-4 mr-2"><img src="https://img.icons8.com/windows/32/000000/gender-neutral-user.png"><span class="dashed-sign-in">Sign In</span></a>

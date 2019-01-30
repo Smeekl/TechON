@@ -28,7 +28,6 @@
         <a href="#" class="forgot-password">
             Forgot the password?
         </a>
-
         <a href="http://techon/registration" class="join-us">
             Still don't have account? Join Us!
         </a>

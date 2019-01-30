@@ -36,4 +36,8 @@ class CartModel extends Model
         }
     }
 
+    public function addToCart($user_id, $product_id){
+        $this->cart->addToCart($user_id, $product_id);
+    }
+
 }
