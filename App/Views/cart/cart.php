@@ -44,9 +44,7 @@
             <div class="col cart-elements">
                 <h1 class="display-4 mt-4 total-amount">Products in cart: <?= $_SESSION['products_in_cart'] ?></h1>
                 <hr class="my-4">
-                <?php foreach ($data
-
-                as $key => $value) { ?>
+                <?php foreach ($data as $key => $value) { ?>
                 <div class="row cart-product justify-content-between">
                     <div class="col-2 product-img">
                         <div class="row">

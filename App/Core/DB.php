@@ -48,4 +48,3 @@ class DB
         return call_user_func_array(array(self::instance(), $method), $args);
     }
 }
-

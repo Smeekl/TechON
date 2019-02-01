@@ -14,7 +14,6 @@ use Core\Model;
 class CartModel extends Model
 {
     private $cart;
-    private $product;
 
     public function __construct()
     {
