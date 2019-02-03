@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php include_once('layouts/header.php');?>
+<?php include_once('public/layouts/header.php');?>
 <div class="wrapper">
     <main>
         <div class="row d-inline justify-content-between">
@@ -60,6 +60,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </div>
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('public/layouts/footer.php'); ?>
 </body>
 </html>

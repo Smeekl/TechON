@@ -10,12 +10,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>TechOn | </title>
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/cart.css">
-    <script src="../../../js/cart.js"></script>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+    <link rel="stylesheet" href="../../../public/css/cart.css">
+    <script src="../../../public/js/cart.js"></script>
 </head>
 <body>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('public/layouts/header.php'); ?>
 <div class="row">
     <div class="col-2 bg-light text-black">
         <div class='sidebar'>
@@ -168,7 +168,7 @@
         <button type="button" class="btn btn-light mb-2 mt-2"><img class="mr-2" src="https://img.icons8.com/ios-glyphs/30/000000/save.png">Save changes</button>
     </div>
 </div>
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('public/layouts/footer.php'); ?>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

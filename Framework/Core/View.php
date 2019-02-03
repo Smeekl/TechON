@@ -10,8 +10,6 @@ namespace Core;
 
 class View
 {
-    //public $template_view; // здесь можно указать общий вид по умолчанию.
-
     public function generate($view,$content_view, $data = null)
     {
         include "app/views/$view/$content_view";

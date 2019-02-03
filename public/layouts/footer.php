@@ -1,6 +1,6 @@
 <head>
-    <script src="/js/search.js"></script>
-    <link rel="stylesheet" href="/css/footer.css">
+    <script src="/public/js/search.js"></script>
+    <link rel="stylesheet" href="/public/css/footer.css">
     <meta charset="UTF-8">
 </head>
 <body>

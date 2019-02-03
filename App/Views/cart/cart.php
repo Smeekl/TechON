@@ -10,12 +10,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>TechOn | </title>
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/cart.css">
-    <script src="../../../js/cart.js"></script>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+    <link rel="stylesheet" href="../../../public/css/cart.css">
+    <script src="../../../public/js/cart.js"></script>
 </head>
 <body>
-<?php include_once('layouts/header.php'); ?>
+<?php include_once('public/layouts/header.php'); ?>
 <div class="row">
     <div class="col-2 bg-light text-black">
         <div class='sidebar'>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="col ml-3">
                                 <div class="col"><span class="seller">Seller:</span><br>
-                                    <img width="100px" height="40px" src="../../../img/walmart.png" alt=""></div>
+                                    <img width="100px" height="40px" src="../../../public/img/walmart.png" alt=""></div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <?php include_once('layouts/footer.php'); ?>
+        <?php include_once('public/layouts/footer.php'); ?>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
