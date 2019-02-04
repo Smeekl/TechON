@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="http://localhost/" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php include_once('public/layouts/header.php');?>
+<?php include_once('layouts/header.php');?>
 <div class="wrapper">
     <main>
         <div class="row d-inline justify-content-between">
@@ -60,6 +61,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </div>
-<?php include_once('public/layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>
 </body>
 </html>

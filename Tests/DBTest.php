@@ -8,7 +8,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class DBTest
+class DBTest extends DBTestCase
 {
 
 }

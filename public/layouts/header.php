@@ -5,7 +5,8 @@ $model->isVerify($_SESSION['user_id']);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/public/css/header.css">
+    <script src="/js/search.js"></script>
+    <link rel="stylesheet" href="/css/header.css">
     <meta charset="UTF-8">
 </head>
 <body>
@@ -13,7 +14,7 @@ $model->isVerify($_SESSION['user_id']);
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo justify-   content-start">
             <a href="http://techon" class="navbar-brand mr-sm-1 text-logo">TechON
-            <img src="/public/img/lamp.png" class="rounded float-left" alt="На главную"></a>
+            <img src="/img/lamp.png" class="rounded float-left" alt="На главную"></a>
         </div>
         <form class="form-inline justify-content-between">
             <input class="form-control mr-sm-4" id="#searchInput" type="search" placeholder="Search" aria-label="Search">

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>TechOn | Make or dream come true</title>
-    <link rel="stylesheet" href="public/css/auth.css">
-    <script src="public/js/authentication.js"></script>
-    <script src="public/js/registration.js"></script>
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/authentication.js"></script>
+    <script src="js/registration.js"></script>
 </head>
 <body>
-<?php include_once('public/layouts/header.php'); ?>
+<?php include_once('layouts/header.php'); ?>
 <div class="container">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="https://img.icons8.com/ios/100/000000/add-user-male.png"/>
@@ -34,7 +35,7 @@
         </a>
     </div><!-- /card-container -->
 </div>
-<?php include_once('public/layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>

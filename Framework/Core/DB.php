@@ -22,7 +22,7 @@ class DB
     {
         if (self::$instance === null)
         {
-            $config = require_once 'App/config/config.php';
+            $config = require_once '../App/config/config.php';
             define('DB_HOST', $config['host']);
             define('DB_NAME', $config['db']);
             define('DB_USER', $config['user']);

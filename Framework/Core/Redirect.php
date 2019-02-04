@@ -7,7 +7,7 @@
  */
 
 namespace Core;
-$config = require_once 'App/config/Redirect.config.php';
+$config = require_once '../App/config/Redirect.config.php';
 define('HTML_PATH', $config['HTML_PATH']);
 define('HTML_PATH_ROOT', $config['HTML_PATH_ROOT']);
 

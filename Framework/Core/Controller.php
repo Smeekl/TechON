@@ -13,6 +13,6 @@ class Controller {
 
     public function generate($view,$content_view, $data = null)
     {
-        include "app/views/$view/$content_view";
+        include "../app/views/$view/$content_view";
     }
 }

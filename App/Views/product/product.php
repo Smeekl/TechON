@@ -7,12 +7,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>TechOn | <?=$data[0]['title'];?></title>
-    <link rel="stylesheet" href="../../../public/css/product.css">
-    <link rel="stylesheet" href="../../../public/css/slider.css">
-    <script src="../../public/js/cart.js"></script>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/slider.css">
+    <script src="/js/cart.js"></script>
 </head>
 <body>
-<?php include_once('public/layouts/header.php');?>
+<?php include_once('layouts/header.php');?>
 <main>
     <h5 class="pt-4 pl-4 category"><a href="http://techon/show">Category/</a><a href="http://techon/show">Category/</a><?=$data[0]['title']?></h5>
     <div class="container pt-4">
@@ -169,13 +169,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="../../../public/js/jqzoom.js"></script>
+<script src="../../../../js/jqzoom.js"></script>
 <script>
     $("#bzoom").zoom({
         zoom_area_width: 400,
         small_thumbs: <?=count($data[1]);?>
     });
 </script>
-<?php include_once('public/layouts/footer.php');?>
+<?php include_once('layouts/footer.php');?>
 </body>
 </html>

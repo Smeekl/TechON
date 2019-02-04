@@ -2,3 +2,7 @@
 /.idea/
 /.git/
 composer.*
+.htaccess
+phpunit.cmd
+.gitignore
+/DB_Dump/

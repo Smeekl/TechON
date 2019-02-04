@@ -15,7 +15,7 @@ Class Router
 
     public function __construct()
     {
-        $routesPath = 'App/config/routes.php';
+        $routesPath = '../App/config/routes.php';
         $this->routes = include($routesPath);
     }
 

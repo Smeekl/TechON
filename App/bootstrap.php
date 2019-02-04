@@ -5,7 +5,7 @@
  * Date: 12.12.18
  * Time: 16:18
  */
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 if (isset($_COOKIE['PHPSESSID'])){
     session_start();

@@ -95,7 +95,7 @@ Class UserModel extends \Core\Model
           $this->authorization($email, $password);
           unset($_POST);
           Redirect::home();
-      } else {
+      } else if (!empty($email)){
           Redirect::page('authentication');
       }
     }
