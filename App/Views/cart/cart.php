@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -14,7 +12,6 @@
     <link rel="stylesheet" href="css/cart.css">
     <script src="js/cart.js"></script>
 </head>
-<body>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
     <div class="col-2 bg-light text-black">
@@ -22,8 +19,7 @@
             <h3 class="mt-4">Menu</h3>
             <hr class="my-4">
             <ul class="nav nav-tabs nav-stacked d-inline-block left-nav">
-                <li><img src="https://img.icons8.com/office/30/000000/user.png"><a class="ml-2"
-                                                                                   href='http://techon/profile'>Profile</a>
+                <li><img src="https://img.icons8.com/office/30/000000/user.png"><a class="ml-2" href='http://techon/profile'>Profile</a>
                 </li>
                 <hr class="my-2">
                 <li><img src="https://img.icons8.com/office/30/000000/shopping-cart.png"><a class="ml-2"
@@ -41,6 +37,7 @@
     </div>
     <div class="col-10">
         <div class="row d-inline">
+            <?php if(!$_SESSION['products_in_cart'] == 0) { ?>
             <div class="col cart-elements">
                 <h1 class="display-4 mt-4 total-amount">Products in cart: <?= $_SESSION['products_in_cart'] ?></h1>
                 <hr class="my-4">
@@ -100,16 +97,20 @@
                                         <div class="col-2 product-price">
                                             <div class="row">
                                                 <div class="col-sm total-price">
-                                                    55$
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mr-4">
+                                    <div class="col-2 product-price">
+                                        <button type="button" class="btn btn-outline-info" onclick="deleteFromCart(<?=$data[0]['id']?>)"><img src="https://img.icons8.com/ios/30/000000/cancel.png">  Delete</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col ml-3">
                                 <div class="col"><span class="seller">Seller:</span><br>
-                                    <img width="100px" height="40px" src="../../../public/img/walmart.png" alt=""></div>
+                                    <img width="100px" height="40px" src="/img/walmart.png" alt=""></div>
                             </div>
                         </div>
                     </div>
@@ -120,18 +121,47 @@
                     <div class="col cart-elements">
                         <h1 class="display-4 text-right total-amount">Total amount: <div class="total">0</div>$</h1>
                     </div>
-                    <div class="col d-flex justify-content-end cart-elements    ">
+                    <div class="col d-flex justify-content-end cart-elements">
                         <button type="button" class="btn btn-light"><i class="fas fa-shopping-cart size-2 pr-2"></i>Check
                             Out
                         </button>
                     </div>
                 </div>
             </div>
+    <?php } else {?>
+    <div class="row">
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+        <div class="h1">Cart is clear</div>
+    </div>
+        <div class="row">
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
         </div>
+        <div class="row">
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+            <div class="h1">Cart is clear</div>
+        </div>
+    <?php }?>
+</div>
         <?php include_once('layouts/footer.php'); ?>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
                 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                 crossorigin="anonymous"></script>

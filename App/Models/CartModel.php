@@ -8,6 +8,7 @@
 
 namespace Models;
 
+use Core\Redirect;
 use DataMapping\CartMapper;
 use Core\Model;
 
@@ -36,7 +37,20 @@ class CartModel extends Model
     }
 
     public function addToCart($user_id, $product_id){
-        $this->cart->addToCart($user_id, $product_id);
+        if (empty($this->cart->findProductInCart($user_id, $product_id))){
+            $this->cart->addToCart($user_id, $product_id);
+            $res = $this->cart->getProduct($product_id);
+            echo json_encode($res);
+            $htam = json_encode($res);
+        } else {
+            Redirect::page('cart');
+        }
+    }
+
+    public function deleteFromCart($user_id, $product_id){
+        if (!empty($user_id)){
+            $this->cart->deleteProductFromCart($user_id, $product_id);
+        }
     }
 
 }

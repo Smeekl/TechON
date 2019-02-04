@@ -26,6 +26,12 @@ Class CartController extends \Core\Controller
         $cart = new CartModel();
         $cart->addToCart($_SESSION['user_id'],$product_id);
     }
+
+    function action_delete(){
+        $product_id = $_POST['product_id'];
+        $cart = new CartModel();
+        $cart->deleteFromCart($_SESSION['user_id'],$product_id);
+    }
 }
 
 
