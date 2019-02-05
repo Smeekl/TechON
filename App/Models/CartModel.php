@@ -41,7 +41,6 @@ class CartModel extends Model
             $this->cart->addToCart($user_id, $product_id);
             $res = $this->cart->getProduct($product_id);
             echo json_encode($res);
-            $htam = json_encode($res);
         } else {
             Redirect::page('cart');
         }

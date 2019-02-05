@@ -16,6 +16,6 @@ class SearchController
     function action_search()
     {
         $result = new SearchModel();
-        $result->getElementByID($_POST['id']);
+        $result->searchProduct($_POST['query']);
     }
 }

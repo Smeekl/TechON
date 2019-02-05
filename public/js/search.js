@@ -1,18 +1,68 @@
+$( document ).ready(function() {
+    $('input').on('keyup', delay(function () {
+        let query = $('.search-inp').val();
+        if (query) {
+            $.ajax(
+                {
+                    url: '/search',
+                    type: "POST",
+                    data: {"query": query},
+                    dataType: "text",
+                    error: function () {
+                        alert("Ошибка");
+                    },
+                    success: function (products) {
+                        $('.search-res').text('');
+                        let result = JSON.parse(products);
+                        console.log(result);
+                        let html;
+                        let htmlContains ='';
+                        if (result.length == 0){
+                            htmlContains = '<h6>Sorry, we can\'t find anything for you :(</h6>';
+                            html = '<div class="position-absolute" id="search-result">\n' + htmlContains + '</div>';
+                        } else {
+                            let i;
+                            console.log(result.length);
+                            for (i = 0; i <= result.length - 1; i++) {
+                                console.log(i);
+                                htmlContains += '<h6>' + result[i].title + '</h6>\n';
+                            }
+                            html = '<div class="position-absolute" id="search-result">\n' + htmlContains + '</div>';
+                        }
+                        $('.search-res').prepend(html);
+                    }
+                });
+        } else {
+            $('.search-res').html('');
+        }
+    },500));
+});
+
 function Search (){
-let query = $("input").val();
-alert(query);
-let count = 1;
+let query = $("input").text();
 $.ajax(
     {
-        url: '/search/search',
+        url: '/search',
         type: "POST",
         data: {"query":query},
         dataType: "text",
         error: function(){
             alert("Ошибка");
         },
-        success: function (count) {
-            alert(count);
+        success: function (products) {
+            let result = JSON.parse(products);
+            console.log(result[0].title);
         }
     });
+}
+
+function delay(callback, ms) {
+    let timer = 0;
+    return function() {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            callback.apply(context, args);
+        }, ms || 0);
+    };
 }

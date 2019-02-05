@@ -7,20 +7,22 @@
  */
 namespace Models;
 
-use DataMapping\ProductMapper;
+use DataMapping\SearchMapper;
 
 
 Class SearchModel extends \Core\Model
 {
-    private $product;
+    private $search;
 
     public function __construct()
     {
-        $this->product = new ProductMapper();
+        $this->search = new SearchMapper();
     }
 
-    public function getElementByID($id)
+    public function searchProduct($query)
     {
-        return $data = $this->product->getProductByID($id);
+        $test1 = $query;
+        $test = $this->search->searchProducts($query);
+        echo json_encode($this->search->searchProducts($query));
     }
 }
