@@ -21,8 +21,8 @@
                             <img class="dashing-deals" width="900px"
                                  src="//i5.walmartimages.com/dfw/4ff9c6c9-7a3c/k2-_73cacff5-6ba8-46c6-86fa-35f312017668.v1.jpg?odnWidth=912&odnHeight=500&odnBg=ffffff">
                         </div>
-                        <div class="col-sm dashing-deals pt-5">
-                            <div class="row d-flex">
+                        <div class="col-sm dashing-deals">
+                            <div class="row d-flex last">
                                 <div class="col-sm"><img class="gift-guide" src="img/gift_guide.png"/></div>
                                 <div class="col-sm"><span class="dashing-deals-label">Shop by interest & find the perfect presents for all</span></div>
                                 <div class="col-sm">

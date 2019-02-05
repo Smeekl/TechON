@@ -30,7 +30,6 @@ function addToCart(product_id) {
         },
         success: function (product) {
             let prod = JSON.parse(product);
-            console.log(prod);
             let html = '<div class="row cart-product justify-content-between">'+
                 '<div class="col-2 product-img">'+
                 '<div class="row">'+
@@ -59,6 +58,7 @@ function addToCart(product_id) {
                 '</div> </div> </div> </div>';
             console.log(html);
             $('.modal-body').prepend(html);
+            $('#qt-value').text(+$('#qt-value').text()+1);
         }
     });
 }
@@ -70,9 +70,20 @@ function deleteFromCart(product_id) {
         data: {"product_id":product_id},
         dataType: "text",
         error: function () {
-        },
+    },
         success: function () {
-            location.reload();
+            swal({
+                title: "Are you sure?",
+                text: "You will delete item from cart!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        location.reload();
+                    }
+                });
         }
     });
 }

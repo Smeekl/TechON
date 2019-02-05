@@ -26,3 +26,7 @@
 a:hover{
     text-decoration: none;
 }
+
+.last{
+    margin-right: 0;
+}
