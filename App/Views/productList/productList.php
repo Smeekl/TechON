@@ -50,18 +50,17 @@ include_once 'layouts/header.php'; ?>
         </div>
         <div class="container products ml-4">
             <div class="row mt-4">
-                <?php
-                foreach ($data as $key => $value) { ?>
+                <?php foreach ($data as $product) { ?>
                     <div class="col-sm-4 mb-4 mt-4">
                         <div class="row">
-                            <a href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>">
-                                <img src="<?php echo $data[$key]['image'] ?>" width="200px" height="200px">
+                            <a href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle() ?>">
+                                <img src="<?=$product->getImage()?>" width="200px" height="200px">
                                 <div class="w-100"></div>
-                                <div class="col-4 col-sm-8"><?php echo $data[$key]['title']; ?></div>
+                                <div class="col-4 col-sm-8"><?=$product->getTitle()?></div>
                                 <div class="w-100"></div>
-                                <div class="col-4 col-sm-10 reviews">Reviews:<?php echo $data[$key]['viewed']; ?></div>
+                                <div class="col-4 col-sm-10 reviews">Reviews:<?=$product->getViewed()?></div>
                                 <div class="w-100"></div>
-                                <div class="price col-6 col-sm-3 mt-2"><?php echo $data[$key]['price'] / 100; ?>$</div>
+                                <div class="price col-6 col-sm-3 mt-2"><?=$product->getPrice()/100?>$</div>
                                 <div class="w-100"></div>
                                 <div class="col-4 col-sm-10 free-shipping mt-2">2-day shipping</div>
                                 <div class="w-100"></div>

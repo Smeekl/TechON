@@ -9,10 +9,12 @@
 namespace DataMapping;
 
 use PDO;
+use Models\ProductModel;
 
 class ProductMapper
 {
     private $pdo;
+    private $product;
 
     public function __construct()
     {
@@ -59,5 +61,25 @@ class ProductMapper
         $query->execute(array(':id' => $id));
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         return $row;
+    }
+
+    public function mapArrayToProduct($data)
+    {
+        $products = array();
+
+        for ($i = 0; $i < count($data); $i++) {
+            $product = new ProductModel();
+            $product->setTitle($data[$i]['title']);
+            $product->setDescription($data[$i]['description']);
+            $product->setId($data[$i]['id']);
+            $product->setImage($data[$i]['image']);
+            $product->setPrice($data[$i]['price']);
+            $product->setQuantityOnStock($data[$i]['quantity']);
+            $product->setShortTitle($data[$i]['short_title']);
+            $product->setVendorName($data[$i]['vendor_title']);
+            $product->setViewed($data[$i]['viewed']);
+            array_push($products, $product);
+        }
+        return $products;
     }
 }

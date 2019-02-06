@@ -43,12 +43,10 @@ header{
 
 #search-result{
     display: block;
-    width: 100%;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
@@ -58,4 +56,13 @@ header{
     width: 700px;
     background: white;
     z-index: 1;
+}
+
+.search-link a{
+    color: #404040;
+}
+
+.search-link :hover{
+    color: black;
+    border-bottom: 1px dashed gray;
 }

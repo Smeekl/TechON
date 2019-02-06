@@ -22,7 +22,7 @@ class SearchMapper
     public function searchProducts($query_string)
     {
         $query_string = "%$query_string%";
-        $query = $this->pdo->prepare('Select products.title,id FROM products WHERE title like ?;');
+        $query = $this->pdo->prepare('Select products.title,id,short_title FROM products WHERE title like ?;');
         $query->execute(array($query_string));
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         return $row;

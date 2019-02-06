@@ -24,8 +24,7 @@ $( document ).ready(function() {
                             let i;
                             console.log(result.length);
                             for (i = 0; i <= result.length - 1; i++) {
-                                console.log(i);
-                                htmlContains += '<h6>' + result[i].title + '</h6>\n';
+                                htmlContains += '<h6 class="search-link"><a href="http://techon/product/'+ result[i].id +'/' + result[i].short_title + '">' + result[i].title + '</a></h6>\n';
                             }
                             html = '<div class="position-absolute" id="search-result">\n' + htmlContains + '</div>';
                         }
