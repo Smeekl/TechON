@@ -21,8 +21,6 @@ Class SearchModel extends \Core\Model
 
     public function searchProduct($query)
     {
-        $test1 = $query;
-        $test = $this->search->searchProducts($query);
         echo json_encode($this->search->searchProducts($query));
     }
 }

@@ -23,6 +23,7 @@ Class ProductModel extends \Core\Model
     private $description;
     private $vendorName;
     private $quantityOnStock;
+    private $images;
 
     public function setTitle($title): void
     {
@@ -114,6 +115,16 @@ Class ProductModel extends \Core\Model
         return $this->quantityOnStock;
     }
 
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    public function getImages()
+    {
+        return $this->images;
+    }
+
     public function __construct()
     {
         $this->product = new ProductMapper();
@@ -121,9 +132,16 @@ Class ProductModel extends \Core\Model
 
     public function getElementByID($id)
     {
-        return $data = $this->product->getProductByID($id);
+        $data = $this->product->getProductByID($id);
+        $product = $this->product->mapArrayToProduct($data)[0];
+        return $product;
     }
 
+    public function getImagesByID($id){
+        $data = $this->product->getProductImages($id);
+        $images = $this->product->mapArrayToProduct($data)[0];
+        return $images;
+    }
 
     public function getSortArrayByLowest()
     {
@@ -136,7 +154,6 @@ Class ProductModel extends \Core\Model
         }
 
         usort($data, array_sorter('price'));
-
         return $products = $this->product->mapArrayToProduct($data);
     }
 

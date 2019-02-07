@@ -14,7 +14,6 @@ use Models\ProductModel;
 class ProductMapper
 {
     private $pdo;
-    private $product;
 
     public function __construct()
     {
@@ -51,7 +50,7 @@ class ProductMapper
         unset($query);
         $this->setIncrementedViewedCounter($id);
         $images = $this->getProductImages($id);
-        array_push($row, $images);
+        array_push($row[0], $images);
         return $row;
     }
 
@@ -60,13 +59,16 @@ class ProductMapper
         $query = $this->pdo->prepare('Select product_images.image FROM product_images WHERE product_images.id = :id ORDER BY product_images.sort_order DESC');
         $query->execute(array(':id' => $id));
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
+        $newRow = array();
+        foreach ($row as $key){
+            array_push($newRow, $key['image']);
+        }
+        return $newRow;
     }
 
     public function mapArrayToProduct($data)
     {
         $products = array();
-
         for ($i = 0; $i < count($data); $i++) {
             $product = new ProductModel();
             $product->setTitle($data[$i]['title']);
@@ -78,6 +80,7 @@ class ProductMapper
             $product->setShortTitle($data[$i]['short_title']);
             $product->setVendorName($data[$i]['vendor_title']);
             $product->setViewed($data[$i]['viewed']);
+            $product->setImages($this->getProductImages($product->getId()));
             array_push($products, $product);
         }
         return $products;

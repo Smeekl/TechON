@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>TechOn | </title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/cart.css">
-    <script src="js/cart.js"></script>
+    <title>TechOn | Cart</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <script src="/js/cart.js"></script>
 </head>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -42,7 +42,7 @@
             <div class="col cart-elements">
                 <h1 class="display-4 mt-4 total-amount">Products in cart: <?= $_SESSION['products_in_cart'] ?></h1>
                 <hr class="my-4">
-                <?php foreach ($data as $key => $value) { ?>
+                <?php foreach ($data as $product) { ?>
                     <div class="row cart-product justify-content-between">
                         <div class="col-2 product-img">
                             <div class="row">
@@ -52,7 +52,7 @@
                                             <div class="col">
                                                 <div class="cart-img">
                                                     <img width="120px" height="120px"
-                                                         src="<?= $data[$key]['image']; ?>">
+                                                         src="<?= $product->getImage(); ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -64,13 +64,13 @@
                             <div class="row d-inline">
                                 <div class="col mb-4">
                                     <div class="col">
-                                        <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $data[$key]['id'] . "/" . $data[$key]['short_title'] ?>"><?=$data[$key]['title'];?></a></div>
+                                        <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle()?>"><?=$product->getTitle();?></a></div>
                                     </div>
                                 </div>
                                 <div class="row prices">
                                     <div class="col-sm ml-4"><strong
-                                                data-price="<?= $data[$key]['price'] ?>"
-                                                class="about-price"><?= $data[$key]['price'] / 100 . "$"; ?></strong>
+                                                data-price="<?=$product->getPrice()?>"
+                                                class="about-price"><?=$product->getPrice() / 100 ?></strong>
                                     </div>
                                     <div class="col d-flex">
                                         <div class="row">
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="row mr-4">
                                         <div class="col-2 product-price">
-                                            <button type="button" class="btn btn-outline-info" onclick="deleteFromCart(<?=$data[0]['id']?>)"><img src="https://img.icons8.com/ios/30/000000/cancel.png">  Delete</button>
+                                            <button type="button" class="btn btn-outline-info" onclick="deleteFromCart(<?=$product->getId()?>)"><img src="https://img.icons8.com/ios/30/000000/cancel.png">  Delete</button>
                                         </div>
                                     </div>
                                 </div>

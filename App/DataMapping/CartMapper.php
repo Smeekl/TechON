@@ -8,6 +8,7 @@
 
 namespace DataMapping;
 
+use Models\CartModel;
 use PDO;
 
 class CartMapper
@@ -44,21 +45,21 @@ class CartMapper
         return $row;
     }
 
-    public function addToCart($user_id, $product_id)
+    public function addToCart(CartModel $cartObject)
     {
         $query = $this->pdo->prepare('
             INSERT INTO cart 
             (user_id)
             VALUES (:user_id);
             ');
-        $query->execute(array(':user_id' => $user_id));
+        $query->execute(array(':user_id' => $cartObject->getUserId()));
         unset($query);
         $query = $this->pdo->prepare('
             INSERT INTO cart_product 
             (user_id, product_id) 
             VALUES (:user_id, :product_id);
             ');
-        $query->execute(array(':user_id' => $user_id, ':product_id' => $product_id));
+        $query->execute(array(':user_id' => $cartObject->getUserId(), ':product_id' => $cartObject->getId()));
         unset($query);
     }
 
@@ -94,5 +95,21 @@ class CartMapper
         $query->execute(array('product_id'=>$product_id, 'user_id'=>$user_id));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
         return $row;
+    }
+
+    public function mapArrayToCart($data)
+    {
+        $productsOnCart = array();
+        for ($i = 0; $i < count($data); $i++) {
+            $cart = new CartModel();
+            $cart->setTitle($data[$i]['title']);
+            $cart->setUserId($data[$i]['user_id']);
+            $cart->setId($data[$i]['id']);
+            $cart->setImage($data[$i]['image']);
+            $cart->setPrice($data[$i]['price']);
+            $cart->setShortTitle($data[$i]['short_title']);
+            array_push($productsOnCart, $cart);
+        }
+        return $productsOnCart;
     }
 }

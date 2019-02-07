@@ -12,7 +12,7 @@ function update() {
     $(".prices").each(function () {
         let price = $(this).find('.about-price').attr('data-price');
         quantity = $(this).find('.inputGrrr :selected').val();
-        let amount = (quantity * price/100);
+        let amount = (quantity * Math.round(price)/100);
         sum += amount;
         $(this).find('.total-price').text(Math.round(amount).toFixed(2));
         $('.total').text(Math.round(sum).toFixed(2));
@@ -86,4 +86,8 @@ function deleteFromCart(product_id) {
                 });
         }
     });
+}
+
+function goToCart() {
+    window.location.href = "http://techon/cart";
 }

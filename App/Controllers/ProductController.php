@@ -27,8 +27,8 @@ Class ProductController extends Controller
     {
         $model = new ProductModel();
         $cartModel = new CartModel();
-        $data = $model->getElementByID($id[1]);
-        array_push($data, $cartModel->getProductsOnCart($_SESSION['user_id']));
+        $data['product'] = $model->getElementByID($id[1]);
+        $data['cart'] = $cartModel->getProductsOnCart($_SESSION['user_id']);
         self::generate('product', 'product.php', $data);
     }
 }
