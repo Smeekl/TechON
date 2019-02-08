@@ -11,6 +11,7 @@ return array(
     'show' => 'product/products',
     'product' => 'product/view/$1',
     'authentication' => 'user/auth',
+    'auth' => 'user/authj',
     'registration' => 'user/registration',
     'orders' => 'order/order',
     'deleteFromCart' => 'cart/delete',

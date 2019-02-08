@@ -6,8 +6,8 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>TechOn | Make or dream come true</title>
-    <link rel="stylesheet" href="css/auth.css">
-    <script src="js/authentication.js"></script>
+    <link rel="stylesheet" href="/css/auth.css">
+    <script src="/js/authentication.js"></script>
 </head>
 <body>
 <?php include_once('layouts/header.php'); ?>
@@ -21,7 +21,7 @@
                    placeholder="Email address" required autofocus>
             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
                    required>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="login"
+            <button class="btn btn-lg btn-primary btn-block btn-signin auth-btn" type="button" onclick="Authentication()" value="login"
                     >Sign in
             </button>
         </form>

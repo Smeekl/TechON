@@ -19,6 +19,12 @@ Class UserController extends \Core\Controller
         self::generate('auth', 'authentication.php');
     }
 
+    function action_authj()
+    {
+        $model = new UserModel();
+        $model->authorization($_POST['email'], $_POST['password']);
+    }
+
     function action_registration()
     {
         $model = new UserModel();

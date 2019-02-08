@@ -14,7 +14,6 @@ $( document ).ready(function() {
                     success: function (products) {
                         $('.search-res').text('');
                         let result = JSON.parse(products);
-                        console.log(result);
                         let html;
                         let htmlContains ='';
                         if (result.length == 0){

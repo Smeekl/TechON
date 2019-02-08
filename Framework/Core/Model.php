@@ -8,9 +8,14 @@
 
 namespace Core;
 
-class Model
+abstract class Model
 {
     public function get_data()
     {
+    }
+
+    public static function create()
+    {
+        return new static();
     }
 }

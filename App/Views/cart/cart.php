@@ -19,7 +19,7 @@
         <div class='sidebar'>
             <h3 class="mt-4">Menu</h3>
             <hr class="my-4">
-            <ul class="nav nav-tabs nav-stacked d-inline-block left-nav">
+            <ul class="nav nav-tabs nav-stacked d-inline-block left-nav mb-4">
                 <li><img src="https://img.icons8.com/office/30/000000/user.png"><a class="ml-2" href='http://techon/profile'>Profile</a>
                 </li>
                 <hr class="my-2">
@@ -30,7 +30,7 @@
                 <li><img src="https://img.icons8.com/office/30/000000/check.png"><a class="ml-2" href='#'>My orders</a>
                 </li>
                 <hr class="my-2">
-                <li><img src="https://img.icons8.com/office/30/000000/export.png"><a class="ml-2"
+                <li class="mb-4"><img src="https://img.icons8.com/office/30/000000/export.png"><a class="ml-2"
                                                                                      href='http://techon/logout'>Log
                         Out</a></li>
             </ul>

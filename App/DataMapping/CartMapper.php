@@ -20,7 +20,8 @@ class CartMapper
         $this->pdo = \Core\DB::instance();
     }
 
-    public function getProduct($product_id){
+    public function getProduct($product_id)
+    {
         $query = $this->pdo->prepare('
             SELECT products.id,title,short_title,products.price, product_images.image, cart_product.user_id FROM products 
             INNER JOIN cart_product ON cart_product.product_id = products.id
@@ -78,21 +79,23 @@ class CartMapper
         return $row;
     }
 
-    public function deleteProductFromCart($user_id, $product_id){
+    public function deleteProductFromCart($user_id, $product_id)
+    {
         $query = $this->pdo->prepare("
         DELETE FROM cart_product
         WHERE product_id=:product_id AND user_id=:user_id;");
-        $query->execute(array(':product_id'=>$product_id, ':user_id'=>$user_id));
+        $query->execute(array(':product_id' => $product_id, ':user_id' => $user_id));
         unset($query);
     }
 
-    public function findProductInCart($user_id, $product_id){
+    public function findProductInCart($user_id, $product_id)
+    {
         $query = $this->pdo->prepare('
             SELECT product_id
             FROM cart_product
             WHERE user_id=:user_id AND product_id=:product_id;
         ');
-        $query->execute(array('product_id'=>$product_id, 'user_id'=>$user_id));
+        $query->execute(array('product_id' => $product_id, 'user_id' => $user_id));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
         return $row;
     }
@@ -101,7 +104,7 @@ class CartMapper
     {
         $productsOnCart = array();
         for ($i = 0; $i < count($data); $i++) {
-            $cart = new CartModel();
+            $cart = CartModel::create();
             $cart->setTitle($data[$i]['title']);
             $cart->setUserId($data[$i]['user_id']);
             $cart->setId($data[$i]['id']);

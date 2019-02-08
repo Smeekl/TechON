@@ -70,7 +70,7 @@ class ProductMapper
     {
         $products = array();
         for ($i = 0; $i < count($data); $i++) {
-            $product = new ProductModel();
+            $product = ProductModel::create();
             $product->setTitle($data[$i]['title']);
             $product->setDescription($data[$i]['description']);
             $product->setId($data[$i]['id']);

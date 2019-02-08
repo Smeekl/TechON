@@ -10,6 +10,7 @@ namespace Models;
 
 use Core\Redirect;
 use DataMapping\UsersMapper;
+use Core\Response;
 
 
 Class UserModel extends \Core\Model
@@ -42,9 +43,9 @@ Class UserModel extends \Core\Model
                 } else {
                     $_SESSION['user_fname'] = $data[0]['first_name'];
                 }
-
                 Redirect::home();
             } else {
+                Response::send(403,'Error');
                 $_SESSION['isAuth'] = false;
                 $_SESSION['security_result'] = false;
             }

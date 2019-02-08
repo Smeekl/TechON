@@ -1,39 +1,16 @@
-$("#authForm").submit(function () {
-    let str = $(this).serialize();
-    $.ajax({
-        type: "POST",
-        url: "/authentication",
-        data: str,
-        success: function (html) {
-            console.log('123');
-        },
-        error: function () {
-            alert('123');
-        }
-    });
-    return false;
-});
-
-
-function UserRegististration() {
-    let firstName = $('#inputFirstName').val();
-    let secondName = $('#inputSecondName').val();
+function Authentication() {
     let email = $('#inputEmail').val();
     let password = $('#inputPassword').val();
-
     $.ajax({
-        url: '/authentication/register',
         type: "POST",
-        data: {"email": email, "password": password, "firstName": firstName, "secondName": secondName},
-        dataType: "text",
-        error: function () {
-            alert('U have some error');
+        url: "/auth",
+        dataType: "json",
+        data: {"email": email, "password":password},
+        success: function (message) {
+            console.log(message);
         },
-
-        success: success
-    })
-}
-
-function success() {
-    alert('LogIn is success');
+        error: function (message) {
+            console.log(message);
+        }
+    });
 }
