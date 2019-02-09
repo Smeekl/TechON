@@ -29,7 +29,7 @@ class AuthValidator
         return true;
     }
 
-    public static function validatePassword($password)
+    public static function validatePassword($password): bool
     {
         $password = Validator::clean($password);
 
@@ -38,9 +38,10 @@ class AuthValidator
             return false;
         }
         if (!empty($password)){
-            if (!Validator::check_length(6, 20, $password)){
-                Response::send(403, 'Your password must be between 8 and 30 characters');
+            if (!Validator::check_length(4, 20, $password)){
+                Response::send(403, 'Your password must be between 4 and 30 characters');
             }
         }
+        return true;
     }
 }

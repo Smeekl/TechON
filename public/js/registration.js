@@ -16,20 +16,27 @@ $(document).ready(function() {
 function AjaxRegister() {
     let password = $('#password').val();
     let email = $('#inputEmail').val();
-    $.ajax(
-        {
-            url: '/',
-            type: "POST",
-            data: {email:email, password:password},
-            dataType: "json",
-            error: function(data){
-                alert(123);
-            },
-            success: function(data){
-                alert(123);
-            },
+
+    let xhr;
+    let _orgAjax = jQuery.ajaxSettings.xhr;
+    jQuery.ajaxSettings.xhr = function () {
+        xhr = _orgAjax();
+        return xhr;
+    };
+    
+    $.ajax({
+        type: "POST",
+        url: "/reg",
+        dataType: "text",
+        data: {"email": email, "password":password},
+        success: function () {
+            location.href = xhr.responseURL;
+        },
+        error: function (message) {
+            let result = jQuery.parseJSON(message.responseText);
+            alertify.error(result.message);
         }
-    );
+    });
 }
 
 function success(data){

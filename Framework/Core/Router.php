@@ -33,7 +33,7 @@ Class Router
             call_user_func(array('\Controllers\MainController', 'action_index'));
         } else {
             foreach ($this->routes as $uriPattern => $path) {
-                if (preg_match("~$uriPattern$~", $uri)) {
+                if (preg_match("~$uriPattern~", $uri)) {
 
                     $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
                     $segments = explode('/', $internalRoute);

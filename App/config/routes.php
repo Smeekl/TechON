@@ -13,6 +13,7 @@ return array(
     'authentication' => 'user/index',
     'auth' => 'user/auth',
     'registration' => 'user/registration',
+    'reg' => 'user/reg',
     'orders' => 'order/order',
     'deleteFromCart' => 'cart/delete',
     'logout' => 'user/logout',

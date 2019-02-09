@@ -100,17 +100,22 @@ Class UserModel extends \Core\Model
 
     public function registration($email, $password)
     {
-
-        if (!$this->userExist($email) && $email != '') {
-            $this->user->userAdd($this->getValidEmail($email), $password);
-            $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
-            $data = $this->user->getUserInfo($email);
-            $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
-            $this->authorization($email, $password);
-            unset($_POST);
-            Redirect::home();
-        } else if (!empty($email)) {
-            Redirect::page('authentication');
+        $email = Validator::clean($email);
+        $password  = Validator::clean($password);
+        if (AuthValidator::validateEmail($email) && AuthValidator::validatePassword($password)){
+            if (!$this->userExist($email) && $email != '') {
+                $this->user->userAdd($this->getValidEmail($email), $password);
+                $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
+                $data = $this->user->getUserInfo($email);
+                $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
+                $this->authorization($email, $password);
+                unset($_POST);
+                Redirect::home();
+            } else if ($this->userExist($email)) {
+                Response::send(403,'Email already exist!');
+            } else if (!empty($email)) {
+                Redirect::page('authentication');
+            }
         }
     }
 

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>TechOn | Make or dream come true</title>
-    <link rel="stylesheet" href="css/auth.css">
-    <script src="js/authentication.js"></script>
-    <script src="js/registration.js"></script>
+    <title>TechOn | Registration</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <script src="/js/registration.js"></script>
 </head>
 <body>
 <?php include_once('layouts/header.php'); ?>
@@ -26,7 +34,7 @@
             <input name="confirm_password" type="password" id="confirm_password" class="form-control" placeholder="Confirm password"
                    required>
             <span class="password-check" id='message'></span>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="login" onclick="AjaxRegister()"
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="button" value="login" onclick="AjaxRegister()"
             >Sign Up
             </button>
         </form>
