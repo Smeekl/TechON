@@ -28,7 +28,7 @@ Class Router
     public function start()
     {
         $uri = $this->getURI();
-        $result = null;
+        $result = true;
         if ($uri == '') {
             call_user_func(array('\Controllers\MainController', 'action_index'));
         } else {
@@ -42,12 +42,12 @@ Class Router
                     $params = $segments;
 
                     $result = call_user_func(array($controllerName, $actionName), $params);
-                    if ($result != null) {
+                    if (!$result) {
                         break;
                     }
                 }
             }
-            if ($result = null) {
+            if ($result) {
                 Redirect::page('404');
             }
         }
