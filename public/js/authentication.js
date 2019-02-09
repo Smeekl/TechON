@@ -14,11 +14,12 @@ function Authentication() {
         url: "/auth",
         dataType: "text",
         data: {"email": email, "password":password},
-        success: function (message) {
+        success: function () {
             location.href = xhr.responseURL;
         },
         error: function (message) {
-            console.log(message);
+            let result = jQuery.parseJSON(message.responseText);
+            alertify.error(result.message);
         }
     });
 }

@@ -9,8 +9,10 @@
 namespace Models;
 
 use Core\Redirect;
-use DataMapping\UsersMapper;
 use Core\Response;
+use Core\Validator;
+use DataMapping\UsersMapper;
+use Validators\AuthValidator;
 
 
 Class UserModel extends \Core\Model
@@ -24,12 +26,12 @@ Class UserModel extends \Core\Model
 
     public function authorization($email, $password)
     {
-        $data = $this->user->getUser($email);
-        $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
+        $email = Validator::clean($email);
+        $password = Validator::clean($password);
+        if (AuthValidator::validateEmail($email)) {
+            $data = $this->user->getUser($email);
+            $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
 
-        if (empty($email || $password)) {
-            Redirect::page('404');
-        } else {
             if (($_SESSION['isAuth'] && $_SESSION['security_result'])) {
                 Redirect::home();
             } else {
@@ -37,24 +39,31 @@ Class UserModel extends \Core\Model
                     if (!isset($_SESSION)) {
                         session_start();
                     }
+
                     $this->user->updateSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
 
                     $_SESSION['isAuth'] = true;
                     $_SESSION['user_id'] = $data[0]['id'];
+
                     if ($data[0]['first_name'] == null) {
                         $_SESSION['user_fname'] = 'Ghost';
                     } else {
                         $_SESSION['user_fname'] = $data[0]['first_name'];
                     }
                     Redirect::home();
-                } else {
-                    Response::send(403, 'Error');
+                } else if ($email != $data[0]['email']){
+                    Response::send(403, 'We cant find user with this email!');
+
+                    $_SESSION['isAuth'] = false;
+                    $_SESSION['security_result'] = false;
+                } else if ($email == $data[0]['email'] && !password_verify($password, $data[0]['password'])){
+                    Response::send(403, 'Incorrect password');
+
                     $_SESSION['isAuth'] = false;
                     $_SESSION['security_result'] = false;
                 }
             }
         }
-
         return $_SESSION['isAuth'];
     }
 
@@ -92,17 +101,17 @@ Class UserModel extends \Core\Model
     public function registration($email, $password)
     {
 
-      if (!$this->userExist($email) && $email != '') {
-          $this->user->userAdd($this->getValidEmail($email), $password);
-          $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
-          $data = $this->user->getUserInfo($email);
-          $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
-          $this->authorization($email, $password);
-          unset($_POST);
-          Redirect::home();
-      } else if (!empty($email)){
-          Redirect::page('authentication');
-      }
+        if (!$this->userExist($email) && $email != '') {
+            $this->user->userAdd($this->getValidEmail($email), $password);
+            $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
+            $data = $this->user->getUserInfo($email);
+            $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
+            $this->authorization($email, $password);
+            unset($_POST);
+            Redirect::home();
+        } else if (!empty($email)) {
+            Redirect::page('authentication');
+        }
     }
 
     public function userExist($email)
@@ -119,7 +128,8 @@ Class UserModel extends \Core\Model
         }
     }
 
-    public function isLog(){
+    public function isLog()
+    {
         if ($_SESSION['isAuth'] && $_SESSION['security_result']) {
             Redirect::home();
         }
