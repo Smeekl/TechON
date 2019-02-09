@@ -27,27 +27,31 @@ Class UserModel extends \Core\Model
         $data = $this->user->getUser($email);
         $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
 
-        if ($_SESSION['isAuth'] && $_SESSION['security_result']) {
-            Redirect::home();
+        if (empty($email || $password)) {
+            Redirect::page('404');
         } else {
-            if ($email == $data[0]['email'] && password_verify($password, $data[0]['password'])) {
-                if (!isset($_SESSION)) {
-                    session_start();
-                }
-                $this->user->updateSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
-
-                $_SESSION['isAuth'] = true;
-                $_SESSION['user_id'] = $data[0]['id'];
-                if ($data[0]['first_name'] == null){
-                    $_SESSION['user_fname'] = 'Ghost';
-                } else {
-                    $_SESSION['user_fname'] = $data[0]['first_name'];
-                }
+            if (($_SESSION['isAuth'] && $_SESSION['security_result'])) {
                 Redirect::home();
             } else {
-                Response::send(403,'Error');
-                $_SESSION['isAuth'] = false;
-                $_SESSION['security_result'] = false;
+                if ($email == $data[0]['email'] && password_verify($password, $data[0]['password'])) {
+                    if (!isset($_SESSION)) {
+                        session_start();
+                    }
+                    $this->user->updateSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
+
+                    $_SESSION['isAuth'] = true;
+                    $_SESSION['user_id'] = $data[0]['id'];
+                    if ($data[0]['first_name'] == null) {
+                        $_SESSION['user_fname'] = 'Ghost';
+                    } else {
+                        $_SESSION['user_fname'] = $data[0]['first_name'];
+                    }
+                    Redirect::home();
+                } else {
+                    Response::send(403, 'Error');
+                    $_SESSION['isAuth'] = false;
+                    $_SESSION['security_result'] = false;
+                }
             }
         }
 
@@ -112,6 +116,12 @@ Class UserModel extends \Core\Model
             return $email;
         } else {
             return false;
+        }
+    }
+
+    public function isLog(){
+        if ($_SESSION['isAuth'] && $_SESSION['security_result']) {
+            Redirect::home();
         }
     }
 }

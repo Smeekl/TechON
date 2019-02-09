@@ -13,5 +13,6 @@ if (isset($_COOKIE['PHPSESSID'])){
 
 use Core\Router;
 
+
 $router = new Router();
 $router->start();

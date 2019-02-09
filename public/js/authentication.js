@@ -1,13 +1,21 @@
 function Authentication() {
     let email = $('#inputEmail').val();
     let password = $('#inputPassword').val();
+
+    let xhr;
+    let _orgAjax = jQuery.ajaxSettings.xhr;
+    jQuery.ajaxSettings.xhr = function () {
+        xhr = _orgAjax();
+        return xhr;
+    };
+
     $.ajax({
         type: "POST",
         url: "/auth",
-        dataType: "json",
+        dataType: "text",
         data: {"email": email, "password":password},
         success: function (message) {
-            console.log(message);
+            location.href = xhr.responseURL;
         },
         error: function (message) {
             console.log(message);

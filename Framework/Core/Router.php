@@ -8,7 +8,6 @@
 
 namespace Core;
 
-
 Class Router
 {
     private $routes;
@@ -29,32 +28,29 @@ Class Router
     public function start()
     {
         $uri = $this->getURI();
+        $result = null;
+        if ($uri == '') {
+            call_user_func(array('\Controllers\MainController', 'action_index'));
+        } else {
+            foreach ($this->routes as $uriPattern => $path) {
+                if (preg_match("~$uriPattern$~", $uri)) {
 
-        foreach ($this->routes as $uriPattern => $path) {
-            if (preg_match("~$uriPattern~", $uri)) {
+                    $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
+                    $segments = explode('/', $internalRoute);
+                    $controllerName = '\Controllers\\' . array_shift($segments) . 'Controller';
+                    $actionName = 'action_' . array_shift($segments);
+                    $params = $segments;
 
-                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
-                $segments = explode('/', $internalRoute);
-                $controllerName = '\Controllers\\' . array_shift($segments) . 'Controller';
-                $actionName = 'action_' . array_shift($segments);
-                $params = $segments;
-
-                $result = call_user_func(array($controllerName, $actionName), $params);
-                if ($result != null) {
-                    break;
+                    $result = call_user_func(array($controllerName, $actionName), $params);
+                    if ($result != null) {
+                        break;
+                    }
                 }
-                break;
+            }
+            if ($result = null) {
+                Redirect::page('404');
             }
         }
     }
 
-    static function ErrorPage404()
-    {
-        require_once 'App/Views/errors/404/404.php';
-    }
-
-    static function ExceptionError()
-    {
-        require_once 'app/Views/errors/Oops/oops.php';
-    }
 }

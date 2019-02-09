@@ -12,14 +12,14 @@ use Models\UserModel;
 
 Class UserController extends \Core\Controller
 {
-    function action_auth()
+    function action_index()
     {
         $model = new UserModel();
-        $model->authorization($_POST['email'], $_POST['password']);
+        $model->isLog();
         self::generate('auth', 'authentication.php');
     }
 
-    function action_authj()
+    function action_auth()
     {
         $model = new UserModel();
         $model->authorization($_POST['email'], $_POST['password']);

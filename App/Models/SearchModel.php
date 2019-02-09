@@ -7,6 +7,7 @@
  */
 namespace Models;
 
+use Core\Redirect;
 use DataMapping\SearchMapper;
 
 
@@ -21,6 +22,10 @@ Class SearchModel extends \Core\Model
 
     public function searchProduct($query)
     {
-        echo json_encode($this->search->searchProducts($query));
+        if (empty($query)){
+         Redirect::page('404');
+        } else {
+            echo json_encode($this->search->searchProducts($query));
+        }
     }
 }

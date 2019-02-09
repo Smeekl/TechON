@@ -10,8 +10,8 @@ return array(
     'main' => 'main/index',
     'show' => 'product/products',
     'product' => 'product/view/$1',
-    'authentication' => 'user/auth',
-    'auth' => 'user/authj',
+    'authentication' => 'user/index',
+    'auth' => 'user/auth',
     'registration' => 'user/registration',
     'orders' => 'order/order',
     'deleteFromCart' => 'cart/delete',
@@ -20,5 +20,5 @@ return array(
     'profile' => 'profile/profile',
     'search' => 'search/search',
     'addToCart' => 'cart/add',
-    '' => 'main/index'
+    '404' => 'errors/404'
 );
