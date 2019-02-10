@@ -30,65 +30,103 @@ class CartModel extends Model
         $this->setId($product_id);
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
-    public function setTitle($title)
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
-        $this->title = $title;
+        $this->id = $id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
-    public function setShortTitle($shortTitle)
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
     {
-        $this->short_title = $shortTitle;
+        $this->title = $title;
     }
 
+    /**
+     * @return mixed
+     */
     public function getShortTitle()
     {
         return $this->short_title;
     }
 
-    public function setPrice($price)
+    /**
+     * @param mixed $short_title
+     */
+    public function setShortTitle($short_title): void
     {
-        $this->price = $price;
+        $this->short_title = $short_title;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPrice()
     {
         return $this->price;
     }
 
-    public function setImage($image)
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
     {
-        $this->image = $image;
+        $this->price = $price;
     }
 
+    /**
+     * @return mixed
+     */
     public function getImage()
     {
         return $this->image;
     }
 
-    public function setUserId($user_id)
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
     {
-        $this->user_id = $user_id;
+        $this->image = $image;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUserId()
     {
         return $this->user_id;
     }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUserId($user_id): void
+    {
+        $this->user_id = $user_id;
+    }
+
+
 
     public function getProductsOnCart($id)
     {

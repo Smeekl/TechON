@@ -8,6 +8,7 @@
 
 namespace DataMapping;
 
+use Models\UserModel;
 use PDO;
 
 class UsersMapper
@@ -21,10 +22,17 @@ class UsersMapper
 
     public function getUser($email)
     {
-        $query = $this->pdo->prepare('SELECT users.id,email,password,first_name,second_name,last_name, user_session.ip_address,user_agent FROM users INNER JOIN user_session ON user_session.user_id = users.id WHERE email = :email');
+        $query = $this->pdo->prepare('
+        SELECT users.id,email,password,first_name,
+        second_name,last_name, user_session.ip_address,
+        user_agent FROM users INNER JOIN user_session 
+        ON user_session.user_id = users.id 
+        WHERE email = :email
+        ');
         $query->execute(array(':email' => $email));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
-        return $row;
+        $user = $this->mapArrayToUser($row);
+        return $user;
     }
 
     public function getSecurityResult($id, $ip, $user_agent, $hash)
@@ -59,18 +67,23 @@ class UsersMapper
             (user_id, ip_address, user_agent, hash) 
             VALUES (:id, :ip_address, :user_agent, :hash);
             ');
-        $query->execute(array(':id' => $id, ':ip_address' => $ip, ':user_agent' => $user_agent, 'hash' => $hash));
+        $query->execute(array(
+            ':id' => $id,
+            ':ip_address' => $ip,
+            ':user_agent' => $user_agent,
+            'hash' => $hash
+        ));
         unset($query);
     }
 
-    public function userAdd($email, $password)
+    public function userAdd(UserModel $userModel)
     {
         $query = $this->pdo->prepare('
             INSERT INTO users 
             (email, password) 
             VALUES (:email, :password);
             ');
-        $query->execute(array(':email' => $email, ':password' => password_hash($password, PASSWORD_DEFAULT)));
+        $query->execute(array(':email' => $userModel->getEmail(), ':password' => password_hash($userModel->getPassword(), PASSWORD_DEFAULT)));
         unset($query);
     }
 
@@ -82,6 +95,21 @@ class UsersMapper
         ');
         $query->execute(array(':email' => $email));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
-        return $row;
+        $user = $this->mapArrayToUser($row);
+        return $user;
+    }
+
+    public function mapArrayToUser($data)
+    {
+        $user = UserModel::create();
+        $user->setId($data[0]['id']);
+        $user->setEmail($data[0]['email']);
+        $user->setPassword($data[0]['password']);
+        $user->setFirstName($data[0]['first_name']);
+        $user->setSecondName($data[0]['second_name']);
+        $user->setLastName($data[0]['last_name']);
+        $user->setUserAgent($data[0]['user_agent']);
+        $user->setUserIp($data[0]['user_ip']);
+        return $user;
     }
 }

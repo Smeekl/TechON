@@ -25,105 +25,166 @@ Class ProductModel extends \Core\Model
     private $quantityOnStock;
     private $images;
 
-    public function setTitle($title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setViewed($viewed): void
-    {
-        $this->viewed = $viewed;
-    }
-
-    public function getViewed()
-    {
-        return $this->viewed;
-    }
-
-    public function setShortTitle($shortTitle): void
-    {
-        $this->shortTitle = $shortTitle;
-    }
-
-    public function getShortTitle()
-    {
-        return $this->shortTitle;
-    }
-
-    public function setPrice($price): void
-    {
-        $this->price = $price;
-    }
-
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
-    public function setImage($image): void
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
-        $this->image = $image;
+        $this->id = $id;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getViewed()
+    {
+        return $this->viewed;
+    }
+
+    /**
+     * @param mixed $viewed
+     */
+    public function setViewed($viewed): void
+    {
+        $this->viewed = $viewed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getShortTitle()
+    {
+        return $this->shortTitle;
+    }
+
+    /**
+     * @param mixed $shortTitle
+     */
+    public function setShortTitle($shortTitle): void
+    {
+        $this->shortTitle = $shortTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getImage()
     {
         return $this->image;
     }
 
-    public function setDescription($description): void
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
     {
-        $this->description = $description;
+        $this->image = $image;
     }
 
+    /**
+     * @return mixed
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
-    public function setVendorName($vendorName): void
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
     {
-        $this->vendorName = $vendorName;
+        $this->description = $description;
     }
 
+    /**
+     * @return mixed
+     */
     public function getVendorName()
     {
         return $this->vendorName;
     }
 
-    public function setQuantityOnStock($quantityOnStock): void
+    /**
+     * @param mixed $vendorName
+     */
+    public function setVendorName($vendorName): void
     {
-        $this->quantityOnStock = $quantityOnStock;
+        $this->vendorName = $vendorName;
     }
 
+    /**
+     * @return mixed
+     */
     public function getQuantityOnStock()
     {
         return $this->quantityOnStock;
     }
 
-    public function setImages($images)
+    /**
+     * @param mixed $quantityOnStock
+     */
+    public function setQuantityOnStock($quantityOnStock): void
     {
-        $this->images = $images;
+        $this->quantityOnStock = $quantityOnStock;
     }
 
+    /**
+     * @return mixed
+     */
     public function getImages()
     {
         return $this->images;
     }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images): void
+    {
+        $this->images = $images;
+    }
+
 
     public function __construct()
     {

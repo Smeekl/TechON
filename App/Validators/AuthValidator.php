@@ -40,6 +40,7 @@ class AuthValidator
         if (!empty($password)){
             if (!Validator::check_length(4, 20, $password)){
                 Response::send(403, 'Your password must be between 4 and 30 characters');
+                return false;
             }
         }
         return true;

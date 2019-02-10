@@ -17,11 +17,142 @@ use Validators\AuthValidator;
 
 Class UserModel extends \Core\Model
 {
+    private $userMapper;
     private $user;
+    private $id;
+    private $password;
+    private $email;
+    private $first_name;
+    private $second_name;
+    private $last_name;
+    private $user_ip;
+    private $user_agent;
 
-    public function __construct()
+    public function __construct($email = null, $password = null)
     {
-        $this->user = new UsersMapper();
+        $this->userMapper = new UsersMapper();
+        $this->setEmail($email);
+        $this->setPassword($password);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * @param mixed $first_name
+     */
+    public function setFirstName($first_name): void
+    {
+        $this->first_name = $first_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSecondName()
+    {
+        return $this->second_name;
+    }
+
+    /**
+     * @param mixed $second_name
+     */
+    public function setSecondName($second_name): void
+    {
+        $this->second_name = $second_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * @param mixed $last_name
+     */
+    public function setLastName($last_name): void
+    {
+        $this->last_name = $last_name;
+    }
+
+    /**
+     * @param mixed $user_ip
+     */
+    public function setUserIp($user_ip): void
+    {
+        $this->user_ip = $user_ip;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserAgent()
+    {
+        return $this->user_agent;
+    }
+
+    /**
+     * @param mixed $user_agent
+     */
+    public function setUserAgent($user_agent): void
+    {
+        $this->user_agent = $user_agent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
     }
 
     public function authorization($email, $password)
@@ -29,34 +160,33 @@ Class UserModel extends \Core\Model
         $email = Validator::clean($email);
         $password = Validator::clean($password);
         if (AuthValidator::validateEmail($email)) {
-            $data = $this->user->getUser($email);
+            $this->user = $this->userMapper->getUser($email);
             $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
 
             if (($_SESSION['isAuth'] && $_SESSION['security_result'])) {
                 Redirect::home();
             } else {
-                if ($email == $data[0]['email'] && password_verify($password, $data[0]['password'])) {
+                if ($email == $this->user->getEmail() && password_verify($password, $this->user->getPassword())) {
                     if (!isset($_SESSION)) {
                         session_start();
                     }
-
-                    $this->user->updateSecurityResult($data[0]['id'], $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
+                    $this->userMapper->updateSecurityResult($this->user->getId(), $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $hash);
 
                     $_SESSION['isAuth'] = true;
-                    $_SESSION['user_id'] = $data[0]['id'];
+                    $_SESSION['user_id'] = $this->user->getId();
 
-                    if ($data[0]['first_name'] == null) {
+                    if ($this->user->getFirstName() == null) {
                         $_SESSION['user_fname'] = 'Ghost';
                     } else {
-                        $_SESSION['user_fname'] = $data[0]['first_name'];
+                        $_SESSION['user_fname'] = $this->user->getFirstName();
                     }
                     Redirect::home();
-                } else if ($email != $data[0]['email']){
+                } else if ($email != $this->user->getEmail()){
                     Response::send(403, 'We cant find user with this email!');
 
                     $_SESSION['isAuth'] = false;
                     $_SESSION['security_result'] = false;
-                } else if ($email == $data[0]['email'] && !password_verify($password, $data[0]['password'])){
+                } else if ($email == $this->user->getEmail() && !password_verify($password, $this->user->getPassword())){
                     Response::send(403, 'Incorrect password');
 
                     $_SESSION['isAuth'] = false;
@@ -70,7 +200,7 @@ Class UserModel extends \Core\Model
     public function isVerify($id)
     {
         $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
-        if ($this->user->getSecurityResult($id, self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash)[0]['COUNT(*)'] == 1) {
+        if ($this->userMapper->getSecurityResult($id, self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash)[0]['COUNT(*)'] == 1) {
             return $_SESSION['security_result'] = true;
         } else {
             return $_SESSION['security_result'] = false;
@@ -103,35 +233,24 @@ Class UserModel extends \Core\Model
         $email = Validator::clean($email);
         $password  = Validator::clean($password);
         if (AuthValidator::validateEmail($email) && AuthValidator::validatePassword($password)){
-            if (!$this->userExist($email) && $email != '') {
-                $this->user->userAdd($this->getValidEmail($email), $password);
+            if (!$this->userExist($email)) {
+                $this->userMapper->userAdd(new UserModel($email, $password));
+                $this->user = $this->userMapper->getUserInfo($email);
                 $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
-                $data = $this->user->getUserInfo($email);
-                $this->user->setSecurityResult($data[0]['id'], self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
-                $this->authorization($email, $password);
+                $this->userMapper->setSecurityResult($this->user->getId(), self::getUserIp(), $_SERVER['HTTP_USER_AGENT'], $hash);
+                $this->authorization($this->user->getEmail(), $password);
                 unset($_POST);
-                Redirect::home();
             } else if ($this->userExist($email)) {
                 Response::send(403,'Email already exist!');
-            } else if (!empty($email)) {
-                Redirect::page('authentication');
             }
         }
     }
 
     public function userExist($email)
     {
-        return $this->user->getUser($email)[0] !== null ? true : false;
+        return $this->userMapper->getUser($email)->getEmail() !== null ? true : false;
     }
 
-    public function getValidEmail($email)
-    {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return $email;
-        } else {
-            return false;
-        }
-    }
 
     public function isLog()
     {
