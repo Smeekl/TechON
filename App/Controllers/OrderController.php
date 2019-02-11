@@ -12,13 +12,12 @@ use Models\OrderModel;
 
 Class OrderController extends \Core\Controller
 {
-
-
     function action_order()
     {
         $order = new OrderModel();
-        //$data = $cartModel->getProductsOnCart($_SESSION['user_id']);
-        self::generate('order', 'order.php');
+        $order->getOrders($_SESSION['user_id']);
+        $orders = $order->getOrder();
+        self::generate('order', 'order.php', $orders);
     }
 }
 

@@ -8,6 +8,8 @@
 
 namespace DataMapping;
 
+use Models\OrderModel;
+use Models\ProductModel;
 use PDO;
 
 class OrderMapper
@@ -19,50 +21,55 @@ class OrderMapper
         $this->pdo = \Core\DB::instance();
     }
 
-    public function getOrders($id)
+    public function getOrders($user_id)
     {
         $query = $this->pdo->prepare('
-            SELECT products.id,title,short_title,products.price, product_images.image, cart_product.user_id FROM products 
-            INNER JOIN cart_product ON cart_product.product_id = products.id
-            INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1
-            WHERE cart_product.user_id = :id;
+            SELECT orders.id, state FROM orders
+            WHERE orders.user_id = :user_id;
         ');
-        $query->execute(array(':id' => $id));
-        $row = $query->fetchALL(PDO::FETCH_ASSOC);
-        return $row;
-    }
-
-    public function addToCart($user_id, $product_id)
-    {
-        $query = $this->pdo->prepare('
-            INSERT INTO cart 
-            (user_id)
-            VALUES (:user_id);
-            ');
         $query->execute(array(':user_id' => $user_id));
-        unset($query);
-        $query = $this->pdo->prepare('
-            INSERT INTO cart_product 
-            (user_id, product_id) 
-            VALUES (:user_id, :product_id);
-            ');
-        $query->execute(array(':user_id' => $user_id, ':product_id' => $product_id));
-        unset($query);
+        $row = $query->fetchALL(PDO::FETCH_ASSOC);
+        $orders = $this->mapArrayToOrder($row);
+        return $orders;
     }
 
-    public function getCountProductsInCart($id)
+    public function getOrderProducts($order_id)
     {
         $query = $this->pdo->prepare('
-            SELECT COUNT(*) 
-            FROM products 
-            INNER JOIN cart_product ON cart_product.product_id = products.id 
-            INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1 
-            WHERE cart_product.user_id = :id
-            GROUP BY cart_product.user_id;
-            ');
-        $query->execute(array(':id' => $id));
+            SELECT orders.id, orders_products.product_id, quantity FROM orders
+            INNER JOIN orders_products ON orders_products.order_id = orders.id
+            WHERE orders.id = :order_id;
+        ');
+        $query->execute(array(':order_id' => $order_id));
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
-        return $row;
+        $products = $this->getProductsInfo($row);
+        return $products;
     }
 
+
+    public function mapArrayToOrder($data)
+    {
+        $orders = array();
+        for ($i = 0; $i < count($data); $i++) {
+            $order = OrderModel::create();
+            $order->setOrderId($data[$i]['id']);
+            $order->setState($data[$i]['state']);
+            $order->setProducts($order->getOrderProducts($data[$i]['id']));
+            $order->setTotalPrice($order->updateTotalPrice());
+            array_push($orders, $order);
+        }
+        return $orders;
+    }
+
+    public function getProductsInfo($data)
+    {
+        $products = array();
+        for ($i = 0; $i < count($data); $i++) {
+            $product = ProductModel::create();
+            $product = $product->getElementByID($data[$i]['product_id']);
+            $product->setQuantity($data[$i]['quantity']);
+            array_push($products, $product);
+        }
+        return $products;
+    }
 }

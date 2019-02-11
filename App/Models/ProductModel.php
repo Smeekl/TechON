@@ -24,6 +24,24 @@ Class ProductModel extends \Core\Model
     private $vendorName;
     private $quantityOnStock;
     private $images;
+    private $quantity;
+
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity): void
+    {
+        $this->quantity = $quantity;
+    }
+
 
     /**
      * @return mixed

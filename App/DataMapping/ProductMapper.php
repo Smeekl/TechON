@@ -40,9 +40,11 @@ class ProductMapper
 
     public function getProductByID($id)
     {
-        $query = $this->pdo->prepare('SELECT products.id, manufacturers.manufacturer_title, products.reviews, products.title, products.short_title, products.price, products.description, vendors.vendor_title, products.quantity
+        $query = $this->pdo->prepare('SELECT products.id, manufacturers.manufacturer_title, products.reviews, products.title, products.short_title,
+                                                products.price, products.description, vendors.vendor_title, products.quantity, product_images.image
                                                 FROM products
                                                 INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
+                                                INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1
                                                 INNER JOIN vendors ON vendors.id = products.vendor_id
                                                 WHERE products.id = :id;');
         $query->execute(array(':id' => $id));

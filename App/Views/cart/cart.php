@@ -52,7 +52,7 @@
                                             <div class="col">
                                                 <div class="cart-img">
                                                     <img width="120px" height="120px"
-                                                         src="<?= $product->getImage(); ?>">
+                                                         src="<?= $product->getImages()[0]; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,9 @@
                             <div class="row d-inline">
                                 <div class="col mb-4">
                                     <div class="col">
-                                        <div class="col-sm product-name text-left"><a class="cart-product" href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle()?>"><?=$product->getTitle();?></a></div>
+                                        <div class="col-sm product-name text-left">
+                                            <a class="cart-product" href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle()?>"><?=$product->getTitle();?></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row prices">

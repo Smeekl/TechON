@@ -39,7 +39,8 @@ $model->isVerify($_SESSION['user_id']);
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="http://techon/profile">Profile</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="http://techon/cart">Cart</a>
+                            <a class="dropdown-item" href="http://techon/orders">Order</a>
                             <a class="dropdown-item" href="http://techon/logout">Sign Out</a>
                         </div>
                     </div>

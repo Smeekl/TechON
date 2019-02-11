@@ -460,7 +460,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body background="https://images5.alphacoders.com/312/thumb-1920-312372.jpg">
 <div class="header">
-    <h1>TechOn error page</h1>
+    <a href="http://techon"><h1>TechOn error page</h1></a>
 </div>
 <div class="w3-main">
     <div class="agile-info">
