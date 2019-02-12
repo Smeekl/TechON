@@ -20,6 +20,11 @@ class UsersMapper
         $this->pdo = \Core\DB::instance();
     }
 
+    /**
+     * Return info of user
+     * @param $email
+     * @return UserModel
+     */
     public function getUser($email)
     {
         $query = $this->pdo->prepare('
@@ -35,6 +40,14 @@ class UsersMapper
         return $user;
     }
 
+    /**
+     * Return info of security result
+     * @param $id
+     * @param $ip
+     * @param $user_agent
+     * @param $hash
+     * @return array
+     */
     public function getSecurityResult($id, $ip, $user_agent, $hash)
     {
         $query = $this->pdo->prepare('
@@ -49,6 +62,13 @@ class UsersMapper
         return $row;
     }
 
+    /**
+     * Update info of security result
+     * @param $id
+     * @param $ip
+     * @param $user_agent
+     * @param $hash
+     */
     public function updateSecurityResult($id, $ip, $user_agent, $hash)
     {
         $query = $this->pdo->prepare('
@@ -60,6 +80,13 @@ class UsersMapper
         unset($query);
     }
 
+    /**
+     * Insert info of security result
+     * @param $id
+     * @param $ip
+     * @param $user_agent
+     * @param $hash
+     */
     public function setSecurityResult($id, $ip, $user_agent, $hash)
     {
         $query = $this->pdo->prepare('
@@ -76,6 +103,10 @@ class UsersMapper
         unset($query);
     }
 
+    /**
+     * Add user on db
+     * @param UserModel $userModel
+     */
     public function userAdd(UserModel $userModel)
     {
         $query = $this->pdo->prepare('
@@ -87,6 +118,11 @@ class UsersMapper
         unset($query);
     }
 
+    /**
+     * Return user info object
+     * @param $email
+     * @return UserModel
+     */
     public function getUserInfo($email)
     {
         $query = $this->pdo->prepare('
@@ -99,6 +135,11 @@ class UsersMapper
         return $user;
     }
 
+    /**
+     * Map array with user info on user object
+     * @param $data
+     * @return UserModel
+     */
     public function mapArrayToUser($data)
     {
         $user = UserModel::create();

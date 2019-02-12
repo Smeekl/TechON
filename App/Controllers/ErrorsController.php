@@ -9,7 +9,7 @@
 namespace Controllers;
 
 
-Class ErrorsController extends  \Core\Controller
+Class ErrorsController extends \Core\Controller
 {
 
 

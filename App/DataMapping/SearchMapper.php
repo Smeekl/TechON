@@ -19,6 +19,11 @@ class SearchMapper
         $this->pdo = \Core\DB::instance();
     }
 
+    /**
+     * Return searched products info
+     * @param $query_string
+     * @return array
+     */
     public function searchProducts($query_string)
     {
         $query_string = "%$query_string%";

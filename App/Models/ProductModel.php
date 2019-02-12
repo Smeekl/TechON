@@ -26,6 +26,11 @@ Class ProductModel extends \Core\Model
     private $images;
     private $quantity;
 
+    public function __construct()
+    {
+        $this->product = new ProductMapper();
+    }
+
     /**
      * @return mixed
      */
@@ -204,11 +209,11 @@ Class ProductModel extends \Core\Model
     }
 
 
-    public function __construct()
-    {
-        $this->product = new ProductMapper();
-    }
-
+    /**
+     * Return product object
+     * @param $id
+     * @return mixed
+     */
     public function getElementByID($id)
     {
         $data = $this->product->getProductByID($id);
@@ -216,12 +221,23 @@ Class ProductModel extends \Core\Model
         return $product;
     }
 
-    public function getImagesByID($id){
+    /**
+     * Return imaged list
+     * @param $id
+     * @return mixed
+     */
+    public function getImagesByID($id)
+    {
         $data = $this->product->getProductImages($id);
         $images = $this->product->mapArrayToProduct($data)[0];
         return $images;
     }
 
+    /**
+     * Return product objects sorted by price
+     * @param $category
+     * @return array
+     */
     public function getSortArrayByLowest($category)
     {
         $data = $this->product->getAllProducts($category);

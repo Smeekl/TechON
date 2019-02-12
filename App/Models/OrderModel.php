@@ -27,6 +27,15 @@ class OrderModel extends Model
     private $cartModel;
 
     /**
+     * OrderModel constructor.
+     */
+    public function __construct()
+    {
+        $this->orderMapper = new OrderMapper();
+        $this->cartModel = new CartModel();
+    }
+
+    /**
      * @return mixed
      */
     public function getTotalPrice()
@@ -101,14 +110,6 @@ class OrderModel extends Model
         $this->products = $products;
     }
 
-    /**
-     * OrderModel constructor.
-     */
-    public function __construct()
-    {
-        $this->orderMapper = new OrderMapper();
-        $this->cartModel = new CartModel();
-    }
 
     /**
      * @param $id
@@ -139,13 +140,17 @@ class OrderModel extends Model
         return $price;
     }
 
+    /**
+     * Create order
+     * @param $orderInfo
+     */
     public function createOrder($orderInfo)
     {
-        if($_SESSION['isAuth']) {
+        if ($_SESSION['isAuth']) {
             $order = $orderInfo;
             $this->orderMapper->createOrder($_SESSION['user_id']);
             $order_id = $this->orderMapper->lastId($_SESSION['user_id']);
-            foreach ($order as $product){
+            foreach ($order as $product) {
                 $this->orderMapper->addProductsToOrder($order_id, $product->id, $product->quantity);
             }
             $this->cartModel->deleteAllFromCart($_SESSION['user_id']);

@@ -7,6 +7,7 @@
  */
 
 namespace DataMapping;
+
 use Models\CategoryModel;
 use PDO;
 
@@ -19,13 +20,23 @@ class CategoryMapper
         $this->pdo = \Core\DB::instance();
     }
 
-    public function getAllCategories(){
+    /**
+     * Return all array categories objects
+     * @return array
+     */
+    public function getAllCategories()
+    {
         $query = $this->pdo->query('SELECT title,category_image,id FROM categories;');
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         $categories = $this->mapArrayToCategory($row);
         return $categories;
     }
 
+    /**
+     * Map array with categories on category object
+     * @param $data
+     * @return array
+     */
     public function mapArrayToCategory($data)
     {
         $categories = array();

@@ -155,6 +155,15 @@ Class UserModel extends \Core\Model
         $this->password = $password;
     }
 
+    /**
+     * Validate email and password
+     * If user is'nt auth
+     * If current user exist on db update current security result, set isAuth=true and user_fname on session
+     * Else create response on ajax handler
+     * @param $email
+     * @param $password
+     * @return bool
+     */
     public function authorization($email, $password)
     {
         $email = Validator::clean($email);
@@ -181,12 +190,12 @@ Class UserModel extends \Core\Model
                         $_SESSION['user_fname'] = $this->user->getFirstName();
                     }
                     Redirect::home();
-                } else if ($email != $this->user->getEmail()){
+                } else if ($email != $this->user->getEmail()) {
                     Response::send(403, 'We cant find user with this email!');
 
                     $_SESSION['isAuth'] = false;
                     $_SESSION['security_result'] = false;
-                } else if ($email == $this->user->getEmail() && !password_verify($password, $this->user->getPassword())){
+                } else if ($email == $this->user->getEmail() && !password_verify($password, $this->user->getPassword())) {
                     Response::send(403, 'Incorrect password');
 
                     $_SESSION['isAuth'] = false;
@@ -197,6 +206,11 @@ Class UserModel extends \Core\Model
         return $_SESSION['isAuth'];
     }
 
+    /**
+     * Check security options and return security_result on Session
+     * @param $id
+     * @return bool
+     */
     public function isVerify($id)
     {
         $hash = md5($_SERVER['HTTP_USER_AGENT'] . self::getUserIp());
@@ -207,6 +221,10 @@ Class UserModel extends \Core\Model
         }
     }
 
+    /**
+     * Return true user IP
+     * @return mixed
+     */
     public static function getUserIp()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -219,6 +237,9 @@ Class UserModel extends \Core\Model
         return $ip;
     }
 
+    /**
+     *Destroy session
+     */
     public function logout()
     {
         $_SESSION['security_result'] = false;
@@ -228,11 +249,18 @@ Class UserModel extends \Core\Model
         Redirect::home();
     }
 
+    /**
+     * Validate email and password
+     * If valid check user exist and if condition is true add new user,
+     * set security options and auth user
+     * @param $email
+     * @param $password
+     */
     public function registration($email, $password)
     {
         $email = Validator::clean($email);
-        $password  = Validator::clean($password);
-        if (AuthValidator::validateEmail($email) && AuthValidator::validatePassword($password)){
+        $password = Validator::clean($password);
+        if (AuthValidator::validateEmail($email) && AuthValidator::validatePassword($password)) {
             if (!$this->userExist($email)) {
                 $this->userMapper->userAdd(new UserModel($email, $password));
                 $this->user = $this->userMapper->getUserInfo($email);
@@ -241,17 +269,25 @@ Class UserModel extends \Core\Model
                 $this->authorization($this->user->getEmail(), $password);
                 unset($_POST);
             } else if ($this->userExist($email)) {
-                Response::send(403,'Email already exist!');
+                Response::send(403, 'Email already exist!');
             }
         }
     }
 
+    /**
+     * Check user exists and return bool value
+     * @param $email
+     * @return bool
+     */
     public function userExist($email)
     {
         return $this->userMapper->getUser($email)->getEmail() !== null ? true : false;
     }
 
 
+    /**
+     *Check if user is log and if condition is true - redirect on home page
+     */
     public function isLog()
     {
         if ($_SESSION['isAuth'] && $_SESSION['security_result']) {

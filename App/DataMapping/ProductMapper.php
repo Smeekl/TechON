@@ -8,8 +8,8 @@
 
 namespace DataMapping;
 
-use PDO;
 use Models\ProductModel;
+use PDO;
 
 class ProductMapper
 {
@@ -20,6 +20,11 @@ class ProductMapper
         $this->pdo = \Core\DB::instance();
     }
 
+    /**
+     * Return info of all products on db
+     * @param null $category
+     * @return array
+     */
     public function getAllProducts($category = null)
     {
         if (!empty($category)) {
@@ -41,6 +46,10 @@ class ProductMapper
         return $row;
     }
 
+    /**
+     * Increase viewed counter on product
+     * @param $id
+     */
     public function setIncrementedViewedCounter($id)
     {
         $query = $this->pdo->prepare('UPDATE products SET viewed = viewed + 1 WHERE id= :id');
@@ -48,6 +57,11 @@ class ProductMapper
         unset($query);
     }
 
+    /**
+     * Return all info of product
+     * @param $id
+     * @return array
+     */
     public function getProductByID($id)
     {
         $query = $this->pdo->prepare('SELECT products.id, manufacturers.manufacturer_title, products.reviews, products.title, products.short_title,
@@ -66,18 +80,28 @@ class ProductMapper
         return $row;
     }
 
+    /**
+     * Get all images of product
+     * @param $id
+     * @return array
+     */
     public function getProductImages($id)
     {
         $query = $this->pdo->prepare('Select product_images.image FROM product_images WHERE product_images.id = :id ORDER BY product_images.sort_order DESC');
         $query->execute(array(':id' => $id));
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         $newRow = array();
-        foreach ($row as $key){
+        foreach ($row as $key) {
             array_push($newRow, $key['image']);
         }
         return $newRow;
     }
 
+    /**
+     * Map array with products info on product object
+     * @param $data
+     * @return array
+     */
     public function mapArrayToProduct($data)
     {
         $products = array();

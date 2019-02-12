@@ -9,7 +9,6 @@
 namespace Models;
 
 use DataMapping\CategoryMapper;
-use DataMapping\ProductMapper;
 
 
 Class CategoryModel extends \Core\Model
@@ -74,6 +73,10 @@ Class CategoryModel extends \Core\Model
         $this->categoriesMapper = new CategoryMapper();
     }
 
+    /**
+     * Return all categories
+     * @return array
+     */
     public function getAllCategories()
     {
         return $categories = $this->categoriesMapper->getAllCategories();

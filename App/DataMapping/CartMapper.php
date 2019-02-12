@@ -20,6 +20,11 @@ class CartMapper
         $this->pdo = \Core\DB::instance();
     }
 
+    /**
+     * Return product info array
+     * @param $product_id
+     * @return array
+     */
     public function getProduct($product_id)
     {
         $query = $this->pdo->prepare('
@@ -33,6 +38,11 @@ class CartMapper
         return $row;
     }
 
+    /**
+     * Return products on cart array
+     * @param $id
+     * @return array
+     */
     public function getCartItems($id)
     {
         $query = $this->pdo->prepare('
@@ -46,6 +56,10 @@ class CartMapper
         return $row;
     }
 
+    /**
+     * Add product into db
+     * @param CartModel $cartObject
+     */
     public function addToCart(CartModel $cartObject)
     {
         $query = $this->pdo->prepare('
@@ -64,6 +78,11 @@ class CartMapper
         unset($query);
     }
 
+    /**
+     * Return count of products in cart
+     * @param $id
+     * @return array
+     */
     public function getCountProductsInCart($id)
     {
         $query = $this->pdo->prepare('
@@ -79,6 +98,11 @@ class CartMapper
         return $row;
     }
 
+    /**
+     * Delete one product on cart
+     * @param $user_id
+     * @param $product_id
+     */
     public function deleteProductFromCart($user_id, $product_id)
     {
         $query = $this->pdo->prepare("
@@ -88,6 +112,10 @@ class CartMapper
         unset($query);
     }
 
+    /**
+     * Delete all products on cart
+     * @param $user_id
+     */
     public function deleteAllFromCart($user_id)
     {
         $query = $this->pdo->prepare("
@@ -97,6 +125,12 @@ class CartMapper
         unset($query);
     }
 
+    /**
+     * Find product on cart
+     * @param $user_id
+     * @param $product_id
+     * @return array
+     */
     public function findProductInCart($user_id, $product_id)
     {
         $query = $this->pdo->prepare('
@@ -109,6 +143,11 @@ class CartMapper
         return $row;
     }
 
+    /**
+     * Map array with product info on cart object
+     * @param $data
+     * @return array
+     */
     public function mapArrayToCart($data)
     {
         $productsOnCart = array();

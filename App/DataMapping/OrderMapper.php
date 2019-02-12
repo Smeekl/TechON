@@ -21,6 +21,11 @@ class OrderMapper
         $this->pdo = \Core\DB::instance();
     }
 
+    /**
+     * Return orders
+     * @param $user_id
+     * @return array
+     */
     public function getOrders($user_id)
     {
         $query = $this->pdo->prepare('
@@ -33,6 +38,11 @@ class OrderMapper
         return $orders;
     }
 
+    /**
+     * Return products on order
+     * @param $order_id
+     * @return array
+     */
     public function getOrderProducts($order_id)
     {
         $query = $this->pdo->prepare('
@@ -47,6 +57,11 @@ class OrderMapper
     }
 
 
+    /**
+     * Map array with orders info on order object
+     * @param $data
+     * @return array
+     */
     public function mapArrayToOrder($data)
     {
         $orders = array();
@@ -61,6 +76,11 @@ class OrderMapper
         return $orders;
     }
 
+    /**
+     * Get array product objects
+     * @param $data
+     * @return array
+     */
     public function getProductsInfo($data)
     {
         $products = array();
@@ -73,6 +93,10 @@ class OrderMapper
         return $products;
     }
 
+    /**
+     * Create order on db
+     * @param $user_id
+     */
     public function createOrder($user_id)
     {
         $query = $this->pdo->prepare('
@@ -84,6 +108,12 @@ class OrderMapper
         unset($query);
     }
 
+    /**
+     * Add products on order
+     * @param $order_id
+     * @param $product_id
+     * @param $quantity
+     */
     public function addProductsToOrder($order_id, $product_id, $quantity)
     {
         $query = $this->pdo->prepare('
@@ -96,7 +126,13 @@ class OrderMapper
     }
 
 
-    public function lastId($user_id){
+    /**
+     * Return last inserted id
+     * @param $user_id
+     * @return mixed
+     */
+    public function lastId($user_id)
+    {
         $query = $this->pdo->prepare('
             SELECT MAX( id ) FROM orders WHERE user_id = :user_id;
         ');

@@ -5,6 +5,7 @@
  * Date: 30.01.2019
  * Time: 4:17
  */
+
 namespace Models;
 
 use Core\Redirect;
@@ -20,10 +21,15 @@ Class SearchModel extends \Core\Model
         $this->search = new SearchMapper();
     }
 
+
+    /**Search products and return on ajax handler
+     * @param $query
+     * @return mixed
+     */
     public function searchProduct($query)
     {
-        if (empty($query)){
-         Redirect::page('404');
+        if (empty($query)) {
+            Redirect::page('404');
         } else {
             echo json_encode($this->search->searchProducts($query));
         }

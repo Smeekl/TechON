@@ -12,6 +12,10 @@ use Core\Model;
 use Core\Redirect;
 use DataMapping\CartMapper;
 
+/**
+ * Class CartModel
+ * @package Models
+ */
 class CartModel extends Model
 {
     private $cart;
@@ -127,7 +131,11 @@ class CartModel extends Model
     }
 
 
-
+    /**
+     * Return all products on user cart
+     * @param $id
+     * @return array
+     */
     public function getProductsOnCart($id)
     {
         $this->getCountOfProducts($id);
@@ -136,6 +144,10 @@ class CartModel extends Model
         return $productsOnCart;
     }
 
+    /**
+     * Return count of products on cart in session
+     * @param $id
+     */
     public function getCountOfProducts($id)
     {
         if (!empty($this->cart->getCountProductsInCart($id))) {
@@ -145,6 +157,11 @@ class CartModel extends Model
         }
     }
 
+    /**
+     * Add product to cart
+     * @param $user_id
+     * @param $product_id
+     */
     public function addToCart($user_id, $product_id)
     {
         if (empty($this->cart->findProductInCart($user_id, $product_id))) {
@@ -156,6 +173,11 @@ class CartModel extends Model
         }
     }
 
+    /**
+     * Delete selected product on cart
+     * @param $user_id
+     * @param $product_id
+     */
     public function deleteFromCart($user_id, $product_id)
     {
         if (!empty($user_id)) {
@@ -163,6 +185,10 @@ class CartModel extends Model
         }
     }
 
+    /**
+     * Delete all products on cart
+     * @param $user_id
+     */
     public function deleteAllFromCart($user_id)
     {
         if (!empty($user_id)) {
