@@ -11,15 +11,18 @@ namespace Controllers;
 
 use Core\Controller;
 use Models\CartModel;
+use Models\CategoryModel;
 use Models\ProductModel;
 
 
 Class ProductController extends Controller
 {
-    function action_products()
+    function action_products($category = null)
     {
         $model = new ProductModel();
-        $data = $model->getSortArrayByLowest();
+        $categories = new CategoryModel();
+        $data['categories'] = $categories->getAllCategories();
+        $data['products'] = $model->getSortArrayByLowest($category[1]);
         self::generate('productList', 'productList.php', $data);
     }
 

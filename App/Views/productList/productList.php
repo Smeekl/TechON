@@ -21,13 +21,9 @@ include_once 'layouts/header.php'; ?>
                 <nav class="navbar navbar-light justify-conten-between">
                     <ul class="navbar-nav">
                         <div class="list-group ">
-                            <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-                            <a href="#" class="list-group-item list-group-item-action">User Management</a>
-                            <a href="#" class="list-group-item list-group-item-action">Used</a>
-                            <a href="#" class="list-group-item list-group-item-action">User Management</a>
-                            <a href="#" class="list-group-item list-group-item-action">Used</a>
-                            <a href="#" class="list-group-item list-group-item-action">User Management</a>
-                            <a href="#" class="list-group-item list-group-item-action">Used</a>
+                            <?php foreach ($data['categories'] as $category) {?>
+                                <a href="http://techon/category/<?=$category->getId()?>" class="list-group-item list-group-item-action"><?=$category->getTitle()?></a>
+                            <?php }?>
                         </div>
                     </ul>
                 </nav>
@@ -35,7 +31,7 @@ include_once 'layouts/header.php'; ?>
         </div>
         <div class="container products ml-4">
             <div class="row mt-4">
-                <?php foreach ($data as $product) { ?>
+                <?php foreach ($data['products'] as $product) { ?>
                     <div class="col-sm-4 mb-4 mt-4">
                         <div class="row">
                             <a href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle() ?>">

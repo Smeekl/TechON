@@ -28,7 +28,7 @@
             autoplay_interval: 6000, 	// 自动播放时每张图片的停留时间
             keyboard: true,
             right_to_left: false,
-        }
+        };
 
         if(options){
             $.extend(_option, options);
@@ -106,7 +106,7 @@
                     this.stop();
                     this.start();
                 }
-            }
+            };
 
             // 循环小图
             var $small = '';

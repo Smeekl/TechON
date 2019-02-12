@@ -20,13 +20,23 @@ class ProductMapper
         $this->pdo = \Core\DB::instance();
     }
 
-    public function getAllProducts($sortType = null)
+    public function getAllProducts($category = null)
     {
-        $query = $this->pdo->query('SELECT products.id, manufacturers.manufacturer_title, products.viewed, products.title, products.short_title, products.price, product_images.image, products.description, vendors.vendor_title, products.quantity
+        if (!empty($category)) {
+            $query = $this->pdo->prepare(' SELECT products.id, manufacturers.manufacturer_title, products.viewed, products.title, products.short_title, products.price, product_images.image, products.description, vendors.vendor_title, products.quantity
+                                                    FROM products
+                                                    INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
+                                                    INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1
+                                                    INNER JOIN vendors ON vendors.id = products.vendor_id
+                                                    WHERE products.category = :category;');
+            $query->execute(array(':category' => $category));
+        } else {
+            $query = $this->pdo->query('SELECT products.id, manufacturers.manufacturer_title, products.viewed, products.title, products.short_title, products.price, product_images.image, products.description, vendors.vendor_title, products.quantity
                                                 FROM products
                                                 INNER JOIN manufacturers ON manufacturers.id = products.manufacturer_id
                                                 INNER JOIN product_images ON product_images.id = products.id AND product_images.sort_order = 1
                                                 INNER JOIN vendors ON vendors.id = products.vendor_id;');
+        }
         $row = $query->fetchALL(PDO::FETCH_ASSOC);
         return $row;
     }

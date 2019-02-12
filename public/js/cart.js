@@ -1,6 +1,6 @@
 $(document).ready(function(){
     update();
-    count = 1
+    count = 1;
     $('.inputGrrr').change(function(){
         update();
     });

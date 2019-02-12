@@ -9,13 +9,17 @@
 namespace Controllers;
 
 
+use Models\CategoryModel;
+
 Class MainController extends  \Core\Controller
 {
 
 
     function action_index()
     {
-       self::generate('index', 'index.php');
+        $categories = new CategoryModel();
+        $data['categories'] = $categories->getAllCategories();
+       self::generate('index', 'index.php', $data);
     }
 
 }

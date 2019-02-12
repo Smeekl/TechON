@@ -222,9 +222,9 @@ Class ProductModel extends \Core\Model
         return $images;
     }
 
-    public function getSortArrayByLowest()
+    public function getSortArrayByLowest($category)
     {
-        $data = $this->product->getAllProducts();
+        $data = $this->product->getAllProducts($category);
         function array_sorter($key)
         {
             return function ($a, $b) use ($key) {

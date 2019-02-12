@@ -20,7 +20,7 @@ class CategoryMapper
     }
 
     public function getAllCategories(){
-        $query = $this->pdo->query('SELECT title FROM categories;');
+        $query = $this->pdo->query('SELECT title,category_image,id FROM categories;');
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         $categories = $this->mapArrayToCategory($row);
         return $categories;
@@ -31,7 +31,9 @@ class CategoryMapper
         $categories = array();
         for ($i = 0; $i < count($data); $i++) {
             $category = CategoryModel::create();
-            $category->setTitle($data[0]['title']);
+            $category->setTitle($data[$i]['title']);
+            $category->setImage($data[$i]['category_image']);
+            $category->setId($data[$i]['id']);
             array_push($categories, $category);
         }
         return $categories;

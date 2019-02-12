@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="shortcut icon" href="http://localhost/" />
+    <link rel="shortcut icon" href="http://localhost/"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php include_once('layouts/header.php');?>
+<?php include_once('layouts/header.php'); ?>
 <div class="wrapper">
     <main>
         <div class="row d-inline justify-content-between">
@@ -24,7 +24,8 @@
                         <div class="col-sm dashing-deals">
                             <div class="row d-flex last">
                                 <div class="col-sm"><img class="gift-guide" src="img/gift_guide.png"/></div>
-                                <div class="col-sm"><span class="dashing-deals-label">Shop by interest & find the perfect presents for all</span></div>
+                                <div class="col-sm"><span class="dashing-deals-label">Shop by interest & find the perfect presents for all</span>
+                                </div>
                                 <div class="col-sm">
                                     <button type="button" class="btn btn-outline-light">Shop All</button>
                                 </div>
@@ -36,20 +37,16 @@
             <div class="col-sm something-for-everyone-label">
                 <span class="sme-label">Something for everyone</span>
             </div>
-            <div class="col-sm">
+            <div class="col-sm d-flex justify-content-center">
                 <div class="row mt-4 something-for-everyone">
-                    <div class="col-sm">
-                        <img src="//i5.walmartimages.com/dfw/4ff9c6c9-62e8/k2-_eb0435b2-f3ba-4660-91b1-8d59ff9849a9.v1.jpg?odnWidth=282&odnHeight=282&odnBg=ffffff">
-                    </div>
-                    <div class="col-sm">
-                        <img src="//i5.walmartimages.com/dfw/4ff9c6c9-2e8d/k2-_8eb76cde-df9f-4e86-b162-365e5d83e910.v1.jpg?odnWidth=282&odnHeight=282&odnBg=ffffff">
-                    </div>
-                    <div class="col-sm">
-                        <img src="//i5.walmartimages.com/dfw/4ff9c6c9-d708/k2-_b966763c-009a-43cb-aea4-9af627d2f019.v1.jpg?odnWidth=282&odnHeight=282&odnBg=ffffff">
-                    </div>
-                    <div class="col-sm">
-                        <img src="//i5.walmartimages.com/dfw/4ff9c6c9-c0bf/k2-_49269dfe-7654-46e2-bf5c-4633d81efb43.v1.jpg?odnWidth=282&odnHeight=282&odnBg=ffffff">
-                    </div>
+                    <?php foreach ($data['categories'] as $category) { ?>
+                        <div class="col-sm d-flex mr-4 ml-4">
+                            <div class="d-inline align-self-start">
+                                <p class="text-center"><?= $category->getTitle() ?></p>
+                                <img src="<?= $category->getImage() ?>">
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

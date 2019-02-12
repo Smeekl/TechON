@@ -10,6 +10,7 @@ return array(
     'main' => 'main/index',
     'show' => 'product/products',
     'product' => 'product/view/$1',
+    'category' => 'product/products/$1',
     'authentication' => 'user/index',
     'auth' => 'user/auth',
     'registration' => 'user/registration',
