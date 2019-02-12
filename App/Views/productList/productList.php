@@ -18,32 +18,17 @@ include_once 'layouts/header.php'; ?>
             <div class="row">
                 <div class="col-4 col-sm-10">Shop by Category</div>
                 <div class="w-100"></div>
-                <nav class="navbar navbar-light bg-light justify-conten-between">
+                <nav class="navbar navbar-light justify-conten-between">
                     <ul class="navbar-nav">
-                        <li class="navbar-item">
-                            <a href="show/cheap" class="sort">Sort By Lowest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="show/expensive" class="sort">Sort By Highest Price</a>
-                        </li>
+                        <div class="list-group ">
+                            <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+                            <a href="#" class="list-group-item list-group-item-action">User Management</a>
+                            <a href="#" class="list-group-item list-group-item-action">Used</a>
+                            <a href="#" class="list-group-item list-group-item-action">User Management</a>
+                            <a href="#" class="list-group-item list-group-item-action">Used</a>
+                            <a href="#" class="list-group-item list-group-item-action">User Management</a>
+                            <a href="#" class="list-group-item list-group-item-action">Used</a>
+                        </div>
                     </ul>
                 </nav>
             </div>

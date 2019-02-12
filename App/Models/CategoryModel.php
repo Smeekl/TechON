@@ -8,36 +8,38 @@
 
 namespace Models;
 
+use DataMapping\CategoryMapper;
 use DataMapping\ProductMapper;
 
 
 Class CategoryModel extends \Core\Model
 {
-    private $product;
+    private $categoriesMapper;
+    private $title;
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
+    }
 
     public function __construct()
     {
-        $this->product = new ProductMapper();
+        $this->categoriesMapper = new CategoryMapper();
     }
 
-    public function getElementByID($id)
+    public function getAllCategories()
     {
-        return $data = $this->product->getProductByID($id);
+        return $categories = $this->categoriesMapper->getAllCategories();
     }
-
-    public function getSortArrayByLowest()
-    {
-        $data = $this->product->getAllProducts();
-        function array_sorter($key)
-        {
-            return function ($a, $b) use ($key) {
-                return strnatcmp($a[$key], $b[$key]);
-            };
-        }
-
-        usort($data, array_sorter('price'));
-
-        return $data;
-    }
-
 }
