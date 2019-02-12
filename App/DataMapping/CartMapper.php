@@ -88,6 +88,15 @@ class CartMapper
         unset($query);
     }
 
+    public function deleteAllFromCart($user_id)
+    {
+        $query = $this->pdo->prepare("
+        DELETE FROM cart_product
+        WHERE user_id=:user_id;");
+        $query->execute(array(':user_id' => $user_id));
+        unset($query);
+    }
+
     public function findProductInCart($user_id, $product_id)
     {
         $query = $this->pdo->prepare('

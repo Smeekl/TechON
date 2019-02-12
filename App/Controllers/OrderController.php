@@ -19,6 +19,13 @@ Class OrderController extends \Core\Controller
         $orders = $order->getOrder();
         self::generate('order', 'order.php', $orders);
     }
+
+    function action_create()
+    {
+        $orderInfo = json_decode($_POST['products']);
+        $order = new OrderModel();
+        $order->createOrder($orderInfo);
+    }
 }
 
 

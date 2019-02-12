@@ -16,6 +16,8 @@ return array(
     'reg' => 'user/reg',
     'orders' => 'order/order',
     'deleteFromCart' => 'cart/delete',
+    'deleteAll' => 'cart/deleteall',
+    'createOrder' =>'order/create',
     'logout' => 'user/logout',
     'cart' => 'cart/cart',
     'profile' => 'profile/profile',

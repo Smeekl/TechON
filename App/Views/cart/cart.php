@@ -52,7 +52,7 @@
                                             <div class="col">
                                                 <div class="cart-img">
                                                     <img width="120px" height="120px"
-                                                         src="<?= $product->getImages()[0]; ?>">
+                                                         src="<?= $product->getImage(); ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -65,15 +65,18 @@
                                 <div class="col mb-4">
                                     <div class="col">
                                         <div class="col-sm product-name text-left">
-                                            <a class="cart-product" href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle()?>"><?=$product->getTitle();?></a>
+                                            <a class="cart-product" href="http://techon/product/<?php echo $product->getId(). "/" . $product->getShortTitle()?>">
+                                                <?=$product->getTitle();?>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row prices">
                                     <div class="col-sm ml-4"><strong
                                                 data-price="<?=$product->getPrice()?>"
-                                                class="about-price"><?=$product->getPrice() / 100 ?></strong>
+                                                class="about-price"><?=$product->getPrice() / 100 ?>$</strong>
                                     </div>
+                                    #<span class="product_id"><?=$product->getId()?></span>
                                     <div class="col d-flex">
                                         <div class="row">
                                             <div class="col">
@@ -125,7 +128,7 @@
                 <h1 class="display-4 text-right total-amount">Total amount: <div class="total">0</div>$</h1>
             </div>
             <div class="col d-flex justify-content-end cart-elements">
-                <button type="button" class="btn btn-light"><i class="fas fa-shopping-cart size-2 pr-2"></i>Check
+                <button type="button" class="btn btn-light" onclick="createOrder()"><i class="fas fa-shopping-cart size-2 pr-2"></i>Check
                     Out
                 </button>
             </div>

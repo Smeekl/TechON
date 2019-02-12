@@ -163,4 +163,10 @@ class CartModel extends Model
         }
     }
 
+    public function deleteAllFromCart($user_id)
+    {
+        if (!empty($user_id)) {
+            $this->cart->deleteAllFromCart($user_id);
+        }
+    }
 }

@@ -88,6 +88,36 @@ function deleteFromCart(product_id) {
     });
 }
 
+function createOrder() {
+    let prods = [];
+    let quantity = null;
+    let id = 0;
+    let count = 0;
+    $(".prices").each(function () {
+        let products = {};
+        products.id = [];
+        products.quantity = [];
+        id = $(this).find('.product_id').text();
+        quantity = $(this).find('.inputGrrr :selected').val();
+        products.id = parseInt(id);
+        products.quantity = parseInt(quantity);
+        prods[count] = products;
+        count++;
+    });
+    let prod = JSON.stringify(prods);
+    $.ajax({
+        url: '/createOrder',
+        type: "POST",
+        data: {"products":prod},
+        dataType: "text",
+        error: function () {
+        },
+        success: function () {
+            window.location.href = "http://techon/orders";
+        }
+    });
+}
+
 function goToCart() {
     window.location.href = "http://techon/cart";
 }

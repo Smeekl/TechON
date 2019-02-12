@@ -72,4 +72,36 @@ class OrderMapper
         }
         return $products;
     }
+
+    public function createOrder($user_id)
+    {
+        $query = $this->pdo->prepare('
+            INSERT INTO orders 
+            (user_id)
+            VALUES (:user_id);
+            ');
+        $query->execute(array(':user_id' => $user_id));
+        unset($query);
+    }
+
+    public function addProductsToOrder($order_id, $product_id, $quantity)
+    {
+        $query = $this->pdo->prepare('
+            INSERT INTO orders_products 
+            (order_id, product_id, quantity)
+            VALUES (:order_id, :product_id, :quantity);
+            ');
+        $query->execute(array(':order_id' => $order_id, ':product_id' => $product_id, ':quantity' => $quantity));
+        unset($query);
+    }
+
+
+    public function lastId($user_id){
+        $query = $this->pdo->prepare('
+            SELECT MAX( id ) FROM orders WHERE user_id = :user_id;
+        ');
+        $query->execute(array(':user_id' => $user_id));
+        $row = $query->fetchColumn();
+        return $row;
+    }
 }

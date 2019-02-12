@@ -72,7 +72,7 @@
                                                             <div class="col-sm">Qty:</div>
                                                         </div>
                                                         <div class="col">
-                                                            Qty: <?=$product->getQuantity()?>
+                                                            <?=$product->getQuantity()?>
                                                         </div>
                                                     </div>
                                                 </div>

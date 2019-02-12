@@ -8,8 +8,9 @@
 
 namespace Models;
 
-use DataMapping\OrderMapper;
 use Core\Model;
+use Core\Response;
+use DataMapping\OrderMapper;
 
 /**
  * Class OrderModel
@@ -23,6 +24,7 @@ class OrderModel extends Model
     private $products;
     private $state;
     private $total_price;
+    private $cartModel;
 
     /**
      * @return mixed
@@ -31,7 +33,6 @@ class OrderModel extends Model
     {
         return $this->total_price;
     }
-
 
 
     /**
@@ -100,27 +101,56 @@ class OrderModel extends Model
         $this->products = $products;
     }
 
+    /**
+     * OrderModel constructor.
+     */
     public function __construct()
     {
         $this->orderMapper = new OrderMapper();
+        $this->cartModel = new CartModel();
     }
 
+    /**
+     * @param $id
+     */
     public function getOrders($id)
     {
         $this->order = $this->orderMapper->getOrders($id);
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function getOrderProducts($id)
     {
         return $this->orderMapper->getOrderProducts($id);
     }
 
+    /**
+     * @return float|int
+     */
     public function updateTotalPrice()
     {
         $price = 0;
-            foreach ($this->products as $product){
-                $price += $product->getPrice() * $product->getQuantity();
-            }
+        foreach ($this->products as $product) {
+            $price += $product->getPrice() * $product->getQuantity();
+        }
         return $price;
+    }
+
+    public function createOrder($orderInfo)
+    {
+        if($_SESSION['isAuth']) {
+            $order = $orderInfo;
+            $this->orderMapper->createOrder($_SESSION['user_id']);
+            $order_id = $this->orderMapper->lastId($_SESSION['user_id']);
+            foreach ($order as $product){
+                $this->orderMapper->addProductsToOrder($order_id, $product->id, $product->quantity);
+            }
+            $this->cartModel->deleteAllFromCart($_SESSION['user_id']);
+        } else {
+            Response::send(400, 'Authorize or register first!');
+        }
     }
 }
