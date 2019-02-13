@@ -238,7 +238,7 @@ Class ProductModel extends \Core\Model
      * @param $category
      * @return array
      */
-    public function getSortArrayByLowest($category)
+    public function getSortArrayByLowest($category = null)
     {
         $data = $this->product->getAllProducts($category);
         function array_sorter($key)

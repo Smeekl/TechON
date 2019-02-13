@@ -247,6 +247,7 @@ Class UserModel extends \Core\Model
         session_destroy();
         unset($_SESSION);
         Redirect::home();
+        return false;
     }
 
     /**
@@ -292,6 +293,8 @@ Class UserModel extends \Core\Model
     {
         if ($_SESSION['isAuth'] && $_SESSION['security_result']) {
             Redirect::home();
+        } else {
+            return false;
         }
     }
 }
